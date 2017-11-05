@@ -6,7 +6,7 @@
     <title>File System Plugin for Xamarin and Windows</title>
     <authors>Alberto Fustinoni</authors>
     <owners>Alberto Fustinoni</owners>
-    <licenseUrl>https://github.com/aftnet/FileSystemPlugin/blob/master/readme.md</licenseUrl>
+    <licenseUrl>https://github.com/aftnet/FileSystemPlugin/blob/master/License.txt</licenseUrl>
     <projectUrl>https://github.com/aftnet/FileSystemPlugin</projectUrl>
     <iconUrl>https://github.com/Aftnet/FileSystemPlugin/raw/master/Icon.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
