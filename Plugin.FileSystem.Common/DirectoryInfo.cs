@@ -1,10 +1,10 @@
-﻿using Plugin.Filesystem.Abstractions;
+﻿using Plugin.FileSystem.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Plugin.Filesystem
+namespace Plugin.FileSystem
 {
     public class DirectoryInfo : NativeItemWrapper<System.IO.DirectoryInfo>, IDirectoryInfo
     {

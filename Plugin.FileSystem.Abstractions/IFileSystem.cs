@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Plugin.Filesystem.Abstractions
+namespace Plugin.FileSystem.Abstractions
 {
     /// <summary>
     /// Represents a file system.

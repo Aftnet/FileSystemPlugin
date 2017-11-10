@@ -1,6 +1,6 @@
 ﻿using Foundation;
-using Plugin.Filesystem;
-using Plugin.Filesystem.Abstractions;
+using Plugin.FileSystem;
+using Plugin.FileSystem.Abstractions;
 using System;
 
 namespace Plugin.FileSystem

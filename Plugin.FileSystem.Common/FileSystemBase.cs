@@ -1,8 +1,8 @@
-﻿using Plugin.Filesystem.Abstractions;
+﻿using Plugin.FileSystem.Abstractions;
 using System;
 using System.Threading.Tasks;
 
-namespace Plugin.Filesystem
+namespace Plugin.FileSystem
 {
     internal abstract class FileSystemBase : IFileSystem
     {

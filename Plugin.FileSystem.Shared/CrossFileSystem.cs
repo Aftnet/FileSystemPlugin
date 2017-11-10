@@ -1,4 +1,4 @@
-﻿using Plugin.Filesystem.Abstractions;
+﻿using Plugin.FileSystem.Abstractions;
 
 namespace Plugin.FileSystem
 {
