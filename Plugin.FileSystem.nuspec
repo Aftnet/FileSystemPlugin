@@ -27,7 +27,7 @@
   </metadata>
   <files>
     <!--Core-->
-    <file src="Plugin.FileSystem.Common\bin\$configuration$\netstandard1.3\Plugin.FileSystem.*" target="lib\netstandard1.3" />
+    <file src="Plugin.FileSystem.Abstractions\bin\$configuration$\netstandard1.3\Plugin.FileSystem.*" target="lib\netstandard1.3" />
     <!--UWP-->
     <file src="Plugin.FileSystem.UWP\bin\$configuration$\Plugin.FileSystem.*" target="lib\uap10.0" />
     <!--Windows Desktop-->
