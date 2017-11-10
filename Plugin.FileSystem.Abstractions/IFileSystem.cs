@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Plugin.Filesystem.Abstractions
+namespace Plugin.FileSystem.Abstractions
 {
     /// <summary>
     /// Represents a file system.
@@ -10,6 +10,8 @@ namespace Plugin.Filesystem.Abstractions
         IDirectoryInfo LocalStorage { get; }
 
         IDirectoryInfo RoamingStorage { get; }
+
+        IDirectoryInfo InstallLocation { get; }
 
         Task<IFileInfo> GetFileFromPathAsync(string path);
 

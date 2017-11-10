@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Plugin.Filesystem.Abstractions
+namespace Plugin.FileSystem.Abstractions
 {
     public interface INativeItemWrapper<T>
     {

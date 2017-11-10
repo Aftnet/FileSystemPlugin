@@ -1,21 +1,24 @@
-﻿using Plugin.Filesystem.Abstractions;
+﻿using Plugin.FileSystem.Abstractions;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
 using Windows.Storage;
 
-namespace Plugin.Filesystem
+namespace Plugin.FileSystem
 {
     /// <summary>
     /// Implementation of <see cref="IFileSystem"/> over WinRT Storage APIs
     /// </summary>
-    public class FileSystem : IFileSystem
+    internal class FileSystem : IFileSystem
     {
         private readonly ApplicationData ApplicationData = ApplicationData.Current;
 
         public IDirectoryInfo LocalStorage => new DirectoryInfo(ApplicationData.LocalFolder);
 
         public IDirectoryInfo RoamingStorage => new DirectoryInfo(ApplicationData.RoamingFolder);
+
+        public IDirectoryInfo InstallLocation => new DirectoryInfo(Package.Current.InstalledLocation);
 
         public async Task<IFileInfo> GetFileFromPathAsync(string path)
         {

@@ -1,4 +1,5 @@
-﻿using Plugin.FileSystem;
+﻿using Foundation;
+using Plugin.FileSystem;
 using Plugin.FileSystem.Abstractions;
 using System;
 
@@ -10,7 +11,7 @@ namespace Plugin.FileSystem
 
         public override IDirectoryInfo RoamingStorage => GetSpecialFolder(Environment.SpecialFolder.ApplicationData);
 
-        public override IDirectoryInfo InstallLocation => new DirectoryInfo(new System.IO.DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory));
+        public override IDirectoryInfo InstallLocation => new DirectoryInfo(new System.IO.DirectoryInfo(NSBundle.MainBundle.BundlePath));
 
         private IDirectoryInfo GetSpecialFolder(Environment.SpecialFolder specialFolder)
         {

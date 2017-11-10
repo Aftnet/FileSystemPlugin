@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Plugin.Filesystem.Abstractions
+namespace Plugin.FileSystem.Abstractions
 {
     public abstract class NativeItemWrapper<T> : INativeItemWrapper<T> where T : class
     {

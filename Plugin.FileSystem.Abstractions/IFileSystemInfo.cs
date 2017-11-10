@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Plugin.Filesystem.Abstractions
+namespace Plugin.FileSystem.Abstractions
 {
     public interface IFileSystemInfo
     {

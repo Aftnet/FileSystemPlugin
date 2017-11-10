@@ -10,7 +10,7 @@ namespace Plugin.FileSystem
 
         public override IDirectoryInfo RoamingStorage => GetSpecialFolder(Environment.SpecialFolder.ApplicationData);
 
-        public override IDirectoryInfo InstallLocation => new DirectoryInfo(new System.IO.DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory));
+        public override IDirectoryInfo InstallLocation => new DirectoryInfo(new System.IO.DirectoryInfo(Android.App.Application.Context.DataDir.AbsolutePath));
 
         private IDirectoryInfo GetSpecialFolder(Environment.SpecialFolder specialFolder)
         {

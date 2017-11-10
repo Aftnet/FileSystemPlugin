@@ -1,14 +1,16 @@
-﻿using Plugin.Filesystem.Abstractions;
+﻿using Plugin.FileSystem.Abstractions;
 using System;
 using System.Threading.Tasks;
 
-namespace Plugin.Filesystem
+namespace Plugin.FileSystem
 {
-    public abstract class FileSystemBase : IFileSystem
+    internal abstract class FileSystemBase : IFileSystem
     {
         public abstract IDirectoryInfo LocalStorage { get; }
 
         public abstract IDirectoryInfo RoamingStorage { get; }
+
+        public abstract IDirectoryInfo InstallLocation { get; }
 
         public Task<IFileInfo> GetFileFromPathAsync(string path)
         {

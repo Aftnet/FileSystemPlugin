@@ -1,10 +1,10 @@
-﻿using Plugin.Filesystem.Abstractions;
+﻿using Plugin.FileSystem.Abstractions;
 using System;
 using System.IO;
 using System.Threading.Tasks;
 using Windows.Storage;
 
-namespace Plugin.Filesystem
+namespace Plugin.FileSystem
 {
     public class FileInfo : NativeItemWrapper<StorageFile>, IFileInfo
     {
