@@ -32,5 +32,9 @@
     <file src="Plugin.FileSystem.UWP\bin\$configuration$\Plugin.FileSystem.*" target="lib\uap10.0" />
     <!--Windows Desktop-->
     <file src="Plugin.FileSystem.Net46\bin\$configuration$\Plugin.FileSystem.*" target="lib\net46" />
+    <!--Android-->
+    <file src="Plugin.FileSystem.Android\bin\$configuration$\Plugin.FileSystem.*" target="lib\MonoAndroid10" />
+    <!--iOS-->
+    <file src="Plugin.FileSystem.iOS\bin\$configuration$\Plugin.FileSystem.*" target="lib\Xamarin.iOS10" />
   </files>
 </package>
