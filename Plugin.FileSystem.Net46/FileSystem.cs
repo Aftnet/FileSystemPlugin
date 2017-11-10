@@ -10,6 +10,8 @@ namespace Plugin.FileSystem
 
         public override IDirectoryInfo RoamingStorage => GetSpecialFolder(Environment.SpecialFolder.ApplicationData);
 
+        public override IDirectoryInfo InstallLocation => new DirectoryInfo(new System.IO.DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory));
+
         private IDirectoryInfo GetSpecialFolder(Environment.SpecialFolder specialFolder)
         {
             var path = Environment.GetFolderPath(specialFolder);

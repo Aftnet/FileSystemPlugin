@@ -10,6 +10,8 @@ namespace Plugin.Filesystem
 
         public abstract IDirectoryInfo RoamingStorage { get; }
 
+        public abstract IDirectoryInfo InstallLocation { get; }
+
         public Task<IFileInfo> GetFileFromPathAsync(string path)
         {
             if (string.IsNullOrEmpty(path))

@@ -11,6 +11,8 @@ namespace Plugin.Filesystem.Abstractions
 
         IDirectoryInfo RoamingStorage { get; }
 
+        IDirectoryInfo InstallLocation { get; }
+
         Task<IFileInfo> GetFileFromPathAsync(string path);
 
         Task<IDirectoryInfo> GetFolderFromPathAsync(string path);

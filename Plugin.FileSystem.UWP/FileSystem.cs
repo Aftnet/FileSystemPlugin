@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
 using Windows.Storage;
 
 namespace Plugin.Filesystem
@@ -16,6 +17,8 @@ namespace Plugin.Filesystem
         public IDirectoryInfo LocalStorage => new DirectoryInfo(ApplicationData.LocalFolder);
 
         public IDirectoryInfo RoamingStorage => new DirectoryInfo(ApplicationData.RoamingFolder);
+
+        public IDirectoryInfo InstallLocation => new DirectoryInfo(Package.Current.InstalledLocation);
 
         public async Task<IFileInfo> GetFileFromPathAsync(string path)
         {
