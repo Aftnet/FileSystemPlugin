@@ -5,7 +5,7 @@ using System;
 
 namespace Plugin.FileSystem
 {
-    public class FileSystem : FileSystemBase
+    internal class FileSystem : FileSystemBase
     {
         public override IDirectoryInfo LocalStorage => GetSpecialFolder(Environment.SpecialFolder.LocalApplicationData);
 

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Plugin.Filesystem
 {
-    public abstract class FileSystemBase : IFileSystem
+    internal abstract class FileSystemBase : IFileSystem
     {
         public abstract IDirectoryInfo LocalStorage { get; }
 

@@ -54,5 +54,6 @@
       <Name>Plugin.FileSystem.Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <Import Project="..\Plugin.FileSystem.Shared\Plugin.FileSystem.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

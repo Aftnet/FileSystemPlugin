@@ -10,7 +10,7 @@ namespace Plugin.Filesystem
     /// <summary>
     /// Implementation of <see cref="IFileSystem"/> over WinRT Storage APIs
     /// </summary>
-    public class FileSystem : IFileSystem
+    internal class FileSystem : IFileSystem
     {
         private readonly ApplicationData ApplicationData = ApplicationData.Current;
 
