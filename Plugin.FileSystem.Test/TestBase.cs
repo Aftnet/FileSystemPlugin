@@ -5,13 +5,20 @@ using Xunit;
 
 namespace Plugin.FileSystem.Test
 {
-    public abstract class TestBase
+    public abstract class TestBase : IDisposable
     {
         protected readonly IFileSystem FileSystem;
+        protected readonly IDirectoryInfo TestRootFolder;
 
         protected TestBase(IFileSystem fileSystem)
         {
             FileSystem = fileSystem;
+            TestRootFolder = fileSystem.LocalStorage.CreateDirectoryAsync("FileSystemPluginTest").Result;
+        }
+
+        public void Dispose()
+        {
+            TestRootFolder.DeleteAsync().Wait();
         }
 
         [Fact]
@@ -21,12 +28,11 @@ namespace Plugin.FileSystem.Test
             var random = new Random();
             random.NextBytes(testBuffer);
 
-            var folderOne = await FileSystem.LocalStorage.CreateDirectoryAsync("One");
-            var folderTwo = await FileSystem.LocalStorage.CreateDirectoryAsync("Two");
+            var folderOne = await TestRootFolder.CreateDirectoryAsync("TestFolderOne");
+            var folderTwo = await TestRootFolder.CreateDirectoryAsync("TestFolderTwo");
 
-            var items = await FileSystem.LocalStorage.EnumerateFileItemsAsync();
-            Assert.Collection(items, d => Assert.Equal(folderOne.FullName, d.FullName),
-                d => Assert.Equal(folderTwo.FullName, d.FullName));
+            var items = await TestRootFolder.EnumerateFileItemsAsync();
+            Assert.Collection(items, d => Assert.Equal(d.FullName, folderOne.FullName), d => Assert.Equal(d.FullName, folderTwo.FullName));
 
             var file = await folderOne.CreateFileAsync("FileName.ext");
             using (var stream = await file.OpenAsync(System.IO.FileAccess.ReadWrite))

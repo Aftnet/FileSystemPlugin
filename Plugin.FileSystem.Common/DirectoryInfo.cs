@@ -41,7 +41,7 @@ namespace Plugin.FileSystem
 
         public Task DeleteAsync()
         {
-            return Task.Run(() => NativeItem.Delete());
+            return Task.Run(() => NativeItem.Delete(true));
         }
 
         public async Task<IEnumerable<IDirectoryInfo>> EnumerateDirectoriesAsync()
