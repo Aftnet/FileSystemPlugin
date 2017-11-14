@@ -62,5 +62,24 @@ namespace Plugin.FileSystem
             var stream = await NativeItem.OpenAsync(access == FileAccess.Read ? FileAccessMode.Read : FileAccessMode.ReadWrite);
             return stream.AsStream();
         }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as DirectoryInfo;
+            if (obj == null)
+                return false;
+
+            return FullName == other.FullName;
+        }
+
+        public override int GetHashCode()
+        {
+            return FullName.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return FullName;
+        }
     }
 }
