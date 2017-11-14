@@ -24,7 +24,7 @@ namespace Plugin.FileSystem
             return Task.FromResult(output);
         }
 
-        public Task<IDirectoryInfo> GetFolderFromPathAsync(string path)
+        public Task<IDirectoryInfo> GetDirectoryFromPathAsync(string path)
         {
             if (string.IsNullOrEmpty(path))
             {
