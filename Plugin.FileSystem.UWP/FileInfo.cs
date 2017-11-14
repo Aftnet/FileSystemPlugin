@@ -46,6 +46,11 @@ namespace Plugin.FileSystem
             return new DirectoryInfo(parent);
         }
 
+        public Task MoveToAsync(IDirectoryInfo destFolder, bool overwrite = true)
+        {
+            return MoveToAsync(destFolder, Name, overwrite);
+        }
+
         public Task MoveToAsync(IDirectoryInfo destFolder, string destFileName, bool overwrite = true)
         {
             var nativeFolder = (destFolder as NativeItemWrapper<StorageFolder>).NativeItem;

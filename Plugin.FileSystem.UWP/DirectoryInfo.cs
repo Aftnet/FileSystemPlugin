@@ -18,7 +18,7 @@ namespace Plugin.FileSystem
 
         public string FullName => NativeItem.Path;
 
-        public async Task<IDirectoryInfo> CreateSubdirectoryAsync(string name)
+        public async Task<IDirectoryInfo> CreateDirectoryAsync(string name)
         {
             var newFolder = await NativeItem.CreateFolderAsync(name);
             return new DirectoryInfo(newFolder);
@@ -47,7 +47,7 @@ namespace Plugin.FileSystem
             return files.Select(d => new FileInfo(d)).ToArray();
         }
 
-        public async Task<IEnumerable<IFileSystemInfo>> EnumerateFileSystemInfosAsync()
+        public async Task<IEnumerable<IFileSystemInfo>> EnumerateFileItemsAsync()
         {
             var folders = await EnumerateDirectoriesAsync();
             var files = await EnumerateFilesAsync();

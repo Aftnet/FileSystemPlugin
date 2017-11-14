@@ -33,7 +33,7 @@ namespace Plugin.FileSystem
             return new FileInfo(file);
         }
 
-        public async Task<IDirectoryInfo> CreateSubdirectoryAsync(string name)
+        public async Task<IDirectoryInfo> CreateDirectoryAsync(string name)
         {
             var newFolder = await Task.Run(() => NativeItem.CreateSubdirectory(name));
             return new DirectoryInfo(newFolder);
@@ -58,7 +58,7 @@ namespace Plugin.FileSystem
             return output;
         }
 
-        public async Task<IEnumerable<IFileSystemInfo>> EnumerateFileSystemInfosAsync()
+        public async Task<IEnumerable<IFileSystemInfo>> EnumerateFileItemsAsync()
         {
             var folders = await EnumerateDirectoriesAsync();
             var files = await EnumerateFilesAsync();

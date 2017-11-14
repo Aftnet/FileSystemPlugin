@@ -10,12 +10,12 @@ namespace Plugin.FileSystem.Abstractions
     {
         Task<IFileInfo> CreateFileAsync(string name);
 
-        Task<IDirectoryInfo> CreateSubdirectoryAsync(string name);
+        Task<IDirectoryInfo> CreateDirectoryAsync(string name);
         
         Task<IEnumerable<IDirectoryInfo>> EnumerateDirectoriesAsync();
         
         Task<IEnumerable<IFileInfo>> EnumerateFilesAsync();
         
-        Task<IEnumerable<IFileSystemInfo>> EnumerateFileSystemInfosAsync();
+        Task<IEnumerable<IFileSystemInfo>> EnumerateFileItemsAsync();
     }
 }

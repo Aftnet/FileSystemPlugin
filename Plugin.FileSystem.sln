@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.FileSystem.Android",
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Plugin.FileSystem.Shared", "Plugin.FileSystem.Shared\Plugin.FileSystem.Shared.shproj", "{16F76369-4D05-484A-9B60-6DD64D08A307}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.FileSystem.Test", "Plugin.FileSystem.Test\Plugin.FileSystem.Test.csproj", "{CD7E51AD-A9AA-45A6-BF5D-B129C5FC8C6D}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Plugin.FileSystem.Shared\Plugin.FileSystem.Shared.projitems*{16f76369-4d05-484a-9b60-6dd64d08a307}*SharedItemsImports = 13
@@ -138,6 +140,22 @@ Global
 		{B3C2208E-68F5-4D09-A092-39ED478E3B8E}.Release|x64.Build.0 = Release|Any CPU
 		{B3C2208E-68F5-4D09-A092-39ED478E3B8E}.Release|x86.ActiveCfg = Release|Any CPU
 		{B3C2208E-68F5-4D09-A092-39ED478E3B8E}.Release|x86.Build.0 = Release|Any CPU
+		{CD7E51AD-A9AA-45A6-BF5D-B129C5FC8C6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD7E51AD-A9AA-45A6-BF5D-B129C5FC8C6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD7E51AD-A9AA-45A6-BF5D-B129C5FC8C6D}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{CD7E51AD-A9AA-45A6-BF5D-B129C5FC8C6D}.Debug|ARM.Build.0 = Debug|Any CPU
+		{CD7E51AD-A9AA-45A6-BF5D-B129C5FC8C6D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CD7E51AD-A9AA-45A6-BF5D-B129C5FC8C6D}.Debug|x64.Build.0 = Debug|Any CPU
+		{CD7E51AD-A9AA-45A6-BF5D-B129C5FC8C6D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CD7E51AD-A9AA-45A6-BF5D-B129C5FC8C6D}.Debug|x86.Build.0 = Debug|Any CPU
+		{CD7E51AD-A9AA-45A6-BF5D-B129C5FC8C6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD7E51AD-A9AA-45A6-BF5D-B129C5FC8C6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD7E51AD-A9AA-45A6-BF5D-B129C5FC8C6D}.Release|ARM.ActiveCfg = Release|Any CPU
+		{CD7E51AD-A9AA-45A6-BF5D-B129C5FC8C6D}.Release|ARM.Build.0 = Release|Any CPU
+		{CD7E51AD-A9AA-45A6-BF5D-B129C5FC8C6D}.Release|x64.ActiveCfg = Release|Any CPU
+		{CD7E51AD-A9AA-45A6-BF5D-B129C5FC8C6D}.Release|x64.Build.0 = Release|Any CPU
+		{CD7E51AD-A9AA-45A6-BF5D-B129C5FC8C6D}.Release|x86.ActiveCfg = Release|Any CPU
+		{CD7E51AD-A9AA-45A6-BF5D-B129C5FC8C6D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
