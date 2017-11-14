@@ -53,8 +53,8 @@ namespace Plugin.FileSystem
 
         public async Task<IEnumerable<IFileInfo>> EnumerateFilesAsync()
         {
-            var folders = await Task.Run(() => NativeItem.GetFiles());
-            var output = folders.Select(d => new FileInfo(d));
+            var files = await Task.Run(() => NativeItem.GetFiles());
+            var output = files.Select(d => new FileInfo(d));
             return output;
         }
 

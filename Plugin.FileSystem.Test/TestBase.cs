@@ -32,7 +32,7 @@ namespace Plugin.FileSystem.Test
             var folderTwo = await TestRootFolder.CreateDirectoryAsync("TestFolderTwo");
 
             var items = await TestRootFolder.EnumerateFileItemsAsync();
-            Assert.Collection(items, d => Assert.Equal(d.FullName, folderOne.FullName), d => Assert.Equal(d.FullName, folderTwo.FullName));
+            Assert.Collection(items, d => Assert.Equal(d, folderOne), d => Assert.Equal(d, folderTwo));
 
             var file = await folderOne.CreateFileAsync("FileName.ext");
             using (var stream = await file.OpenAsync(System.IO.FileAccess.ReadWrite))
@@ -41,14 +41,14 @@ namespace Plugin.FileSystem.Test
             }
 
             var files = await folderOne.EnumerateFilesAsync();
-            Assert.Collection(files, d => Assert.Equal(file.FullName, d.FullName));
+            Assert.Collection(files, d => Assert.Equal(file, d));
 
             await file.MoveToAsync(folderTwo);
             Assert.StartsWith(folderTwo.FullName, file.FullName);
             files = await folderOne.EnumerateFilesAsync();
             Assert.Empty(files);
             files = await folderTwo.EnumerateFilesAsync();
-            Assert.Collection(files, d => Assert.Equal(file.FullName, d.FullName));
+            Assert.Collection(files, d => Assert.Equal(file, d));
         }
 
         [Fact]
