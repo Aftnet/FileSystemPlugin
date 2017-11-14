@@ -38,7 +38,7 @@ namespace Plugin.FileSystem
             return new FileInfo(file);
         }
 
-        public async Task<IFileInfo[]> PickFilesAsync(IEnumerable<string> extensionsFilter)
+        public async Task<IFileInfo[]> PickFilesAsync(IEnumerable<string> extensionsFilter = null)
         {
             var picker = new FileOpenPicker();
             GenerateExtensionFilterForPicker(picker.FileTypeFilter, extensionsFilter);
