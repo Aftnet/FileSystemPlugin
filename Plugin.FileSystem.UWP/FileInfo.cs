@@ -65,7 +65,7 @@ namespace Plugin.FileSystem
 
         public override bool Equals(object obj)
         {
-            var other = obj as DirectoryInfo;
+            var other = obj as FileInfo;
             if (obj == null)
                 return false;
 
