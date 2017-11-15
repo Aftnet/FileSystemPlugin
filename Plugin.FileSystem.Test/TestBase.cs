@@ -49,6 +49,8 @@ namespace Plugin.FileSystem.Test
             Assert.Empty(files);
             files = await folderTwo.EnumerateFilesAsync();
             Assert.Collection(files, d => Assert.Equal(file, d));
+
+            file.CopyToAsync(folderOne);
         }
 
         [Fact]
