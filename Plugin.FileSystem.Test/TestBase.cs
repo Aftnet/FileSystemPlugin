@@ -102,46 +102,64 @@ namespace Plugin.FileSystem.Test
         [Fact]
         public async Task CopyFileWorks()
         {
+            var fileOne = await TestRootFolder.CreateFileAsync("one.ext");
+            var fileTwo = await fileOne.CopyToAsync(TestRootFolder, "two.ext");
+
+            var files = await TestRootFolder.EnumerateFilesAsync();
+            Assert.Collection(files, d => Assert.Equal(fileOne, d), d => Assert.Equal(fileTwo, d));
+
+            var newFolder = await TestRootFolder.CreateDirectoryAsync("folder");
+            fileTwo = await fileOne.CopyToAsync(newFolder);
+
+            files = await newFolder.EnumerateFilesAsync();
+            Assert.Collection(files, d => Assert.Equal(fileTwo, d));
+
+            files = await TestRootFolder.EnumerateFilesAsync();
+            Assert.Contains(files, d => d.Name == fileOne.Name);
         }
 
         [Fact]
         public async Task MoveFileWorks()
         {
+            var fileOne = await TestRootFolder.CreateFileAsync("one.ext");
+            await fileOne.MoveToAsync(TestRootFolder, "two.ext");
+
+            var files = await TestRootFolder.EnumerateFilesAsync();
+            Assert.Collection(files, d => Assert.Equal(fileOne, d));
+
+            var newFolder = await TestRootFolder.CreateDirectoryAsync("folder");
+            await fileOne.MoveToAsync(newFolder);
+
+            files = await newFolder.EnumerateFilesAsync();
+            Assert.Collection(files, d => Assert.Equal(fileOne, d));
+
+            files = await TestRootFolder.EnumerateFilesAsync();
+            Assert.Empty(files);
         }
 
         [Fact]
         public async Task OpenFileWorks()
         {
-        }
-
-        [Fact]
-        public async Task FileOperationsWork()
-        {
-            var testBuffer = new byte[128];
+            var data = new byte[128];
             var random = new Random();
-            random.NextBytes(testBuffer);
+            random.NextBytes(data);
 
-            var folderOne = await TestRootFolder.CreateDirectoryAsync("TestFolderOne");
-            var folderTwo = await TestRootFolder.CreateDirectoryAsync("TestFolderTwo");
+            var fileOne = await TestRootFolder.CreateFileAsync("one.ext");
 
-            var items = await TestRootFolder.EnumerateItemsAsync();
-            Assert.Collection(items, d => Assert.Equal(d, folderOne), d => Assert.Equal(d, folderTwo));
-
-            var file = await folderOne.CreateFileAsync("FileName.ext");
-            using (var stream = await file.OpenAsync(System.IO.FileAccess.ReadWrite))
+            using (var stream = await fileOne.OpenAsync(System.IO.FileAccess.ReadWrite))
             {
-                await stream.WriteAsync(testBuffer, 0, testBuffer.Length);
+                Assert.NotNull(stream);
+                await stream.WriteAsync(data, 0, data.Length);
             }
 
-            var files = await folderOne.EnumerateFilesAsync();
-            Assert.Collection(files, d => Assert.Equal(file, d));
+            using (var stream = await fileOne.OpenAsync(System.IO.FileAccess.ReadWrite))
+            {
+                Assert.NotNull(stream);
 
-            await file.MoveToAsync(folderTwo);
-            Assert.StartsWith(folderTwo.FullName, file.FullName);
-            files = await folderOne.EnumerateFilesAsync();
-            Assert.Empty(files);
-            files = await folderTwo.EnumerateFilesAsync();
-            Assert.Collection(files, d => Assert.Equal(file, d));
+                var comparison = new byte[data.Length];
+                await stream.ReadAsync(comparison, 0, comparison.Length);
+                Assert.Equal(data, comparison);
+            }
         }
 
         [Fact]
