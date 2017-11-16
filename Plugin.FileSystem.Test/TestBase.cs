@@ -23,16 +23,42 @@ namespace Plugin.FileSystem.Test
         }
 
         [Fact]
-        public async Task FolderOperationsWork()
+        public async Task CreateFolderWorks()
         {
-            var folderOne = await TestRootFolder.CreateDirectoryAsync("TestFolderOne");
+            var folderOne = await TestRootFolder.CreateDirectoryAsync("Test");
 
             var folders = await TestRootFolder.EnumerateDirectoriesAsync();
             var items = await TestRootFolder.EnumerateItemsAsync();
             Assert.Collection(folders, d => Assert.Equal(folderOne, d));
             Assert.Single(items);
+        }
 
-            string newName = nameof(newName);
+        [Fact]
+        public async Task RenameFolderWorks()
+        {
+            var folderOne = await TestRootFolder.CreateDirectoryAsync("Test");
+
+            string newName = "Renamed";
+            await folderOne.RenameAsync(newName);
+
+            var folders = await TestRootFolder.EnumerateDirectoriesAsync();
+            Assert.Collection(folders, d => Assert.Equal(folderOne, d));
+
+            var parent = await folderOne.GetParentAsync();
+            Assert.Equal(TestRootFolder, parent);
+        }
+
+        [Fact]
+        public async Task DeleteFolderWorks()
+        {
+            var folderOne = await TestRootFolder.CreateDirectoryAsync("Test");
+            var folders = await TestRootFolder.EnumerateDirectoriesAsync();
+            Assert.Collection(folders, d => Assert.Equal(folderOne, d));
+
+            await folderOne.DeleteAsync();
+
+            folders = await TestRootFolder.EnumerateDirectoriesAsync();
+            Assert.Empty(folders);
         }
 
         [Fact]
