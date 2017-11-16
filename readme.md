@@ -20,12 +20,14 @@ The API is modeled on System.IO and uses it where it makes sense to do so, with 
 - iOS
 - Android
 
-## Usage examples
+## Examples
 
-### Wrap native file system object
+### Open a file in app install folder
 
-### Open file for reading
+```
+var files = await CrossFileSystem.Current.LocalStorage().EnumerateFilesAsync();
+var someFile = files.First();
 
-### Unwrap abstraction
+var stream = await fileOne.OpenAsync(System.IO.FileAccess.Read);
 
-### Get app install folder location
+```
