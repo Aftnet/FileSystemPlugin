@@ -15,6 +15,17 @@ namespace Plugin.FileSystem
 
         public string FullName => NativeItem.FullName;
 
+        public Task RenameAsync(string name)
+        {
+            var newPath = Path.Combine(NativeItem.Directory.FullName, name);
+            return Task.Run(() => NativeItem.MoveTo(newPath));
+        }
+
+        public Task<IFileInfo> CopyToAsync(IDirectoryInfo destFolder, bool overwrite = true)
+        {
+            return CopyToAsync(destFolder, Name, overwrite);
+        }
+
         public async Task<IFileInfo> CopyToAsync(IDirectoryInfo destFolder, string destFileName, bool overwrite = true)
         {
             var nativeFolder = (destFolder as NativeItemWrapper<System.IO.DirectoryInfo>).NativeItem;
@@ -49,6 +60,11 @@ namespace Plugin.FileSystem
             });
         }
 
+        public Task MoveToAsync(IDirectoryInfo destFolder, bool overwrite = true)
+        {
+            return MoveToAsync(destFolder, Name, overwrite);
+        }
+
         public Task MoveToAsync(IDirectoryInfo destFolder, string destFileName, bool overwrite = true)
         {
             var nativeFolder = (destFolder as NativeItemWrapper<System.IO.DirectoryInfo>).NativeItem;
@@ -59,6 +75,25 @@ namespace Plugin.FileSystem
         public Task<Stream> OpenAsync(FileAccess access)
         {
             return Task.Run(() => NativeItem.Open(FileMode.OpenOrCreate, access) as Stream);
+        }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as FileInfo;
+            if (obj == null)
+                return false;
+
+            return FullName == other.FullName;
+        }
+
+        public override int GetHashCode()
+        {
+            return FullName.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return FullName;
         }
     }
 }

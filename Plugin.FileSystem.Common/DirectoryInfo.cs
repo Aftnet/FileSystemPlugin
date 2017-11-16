@@ -1,6 +1,7 @@
 ﻿using Plugin.FileSystem.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,6 +16,12 @@ namespace Plugin.FileSystem
         public string Name => NativeItem.Name;
 
         public string FullName => NativeItem.FullName;
+
+        public Task RenameAsync(string name)
+        {
+            var newPath = Path.Combine(NativeItem.Parent.FullName, name);
+            return Task.Run(() => NativeItem.MoveTo(newPath));
+        }
 
         public async Task<IFileInfo> CreateFileAsync(string name)
         {
@@ -33,7 +40,7 @@ namespace Plugin.FileSystem
             return new FileInfo(file);
         }
 
-        public async Task<IDirectoryInfo> CreateSubdirectoryAsync(string name)
+        public async Task<IDirectoryInfo> CreateDirectoryAsync(string name)
         {
             var newFolder = await Task.Run(() => NativeItem.CreateSubdirectory(name));
             return new DirectoryInfo(newFolder);
@@ -41,7 +48,7 @@ namespace Plugin.FileSystem
 
         public Task DeleteAsync()
         {
-            return Task.Run(() => NativeItem.Delete());
+            return Task.Run(() => NativeItem.Delete(true));
         }
 
         public async Task<IEnumerable<IDirectoryInfo>> EnumerateDirectoriesAsync()
@@ -53,12 +60,12 @@ namespace Plugin.FileSystem
 
         public async Task<IEnumerable<IFileInfo>> EnumerateFilesAsync()
         {
-            var folders = await Task.Run(() => NativeItem.GetFiles());
-            var output = folders.Select(d => new FileInfo(d));
+            var files = await Task.Run(() => NativeItem.GetFiles());
+            var output = files.Select(d => new FileInfo(d));
             return output;
         }
 
-        public async Task<IEnumerable<IFileSystemInfo>> EnumerateFileSystemInfosAsync()
+        public async Task<IEnumerable<IFileSystemInfo>> EnumerateItemsAsync()
         {
             var folders = await EnumerateDirectoriesAsync();
             var files = await EnumerateFilesAsync();
@@ -76,6 +83,25 @@ namespace Plugin.FileSystem
         {
             var output = new DirectoryInfo(NativeItem.Parent);
             return Task.FromResult(output as IDirectoryInfo);
+        }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as DirectoryInfo;
+            if (obj == null)
+                return false;
+
+            return FullName == other.FullName;
+        }
+
+        public override int GetHashCode()
+        {
+            return FullName.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return FullName;
         }
     }
 }

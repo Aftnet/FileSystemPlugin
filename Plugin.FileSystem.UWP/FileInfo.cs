@@ -16,6 +16,16 @@ namespace Plugin.FileSystem
 
         public string FullName => NativeItem.Path;
 
+        public Task RenameAsync(string name)
+        {
+            return NativeItem.RenameAsync(name).AsTask();
+        }
+
+        public Task<IFileInfo> CopyToAsync(IDirectoryInfo destFolder, bool overwrite = true)
+        {
+            return CopyToAsync(destFolder, Name, overwrite);
+        }
+
         public async Task<IFileInfo> CopyToAsync(IDirectoryInfo destFolder, string destFileName, bool overwrite = true)
         {
             var nativeFolder = (destFolder as NativeItemWrapper<StorageFolder>).NativeItem;
@@ -46,6 +56,11 @@ namespace Plugin.FileSystem
             return new DirectoryInfo(parent);
         }
 
+        public Task MoveToAsync(IDirectoryInfo destFolder, bool overwrite = true)
+        {
+            return MoveToAsync(destFolder, Name, overwrite);
+        }
+
         public Task MoveToAsync(IDirectoryInfo destFolder, string destFileName, bool overwrite = true)
         {
             var nativeFolder = (destFolder as NativeItemWrapper<StorageFolder>).NativeItem;
@@ -56,6 +71,25 @@ namespace Plugin.FileSystem
         {
             var stream = await NativeItem.OpenAsync(access == FileAccess.Read ? FileAccessMode.Read : FileAccessMode.ReadWrite);
             return stream.AsStream();
+        }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as FileInfo;
+            if (obj == null)
+                return false;
+
+            return FullName == other.FullName;
+        }
+
+        public override int GetHashCode()
+        {
+            return FullName.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return FullName;
         }
     }
 }

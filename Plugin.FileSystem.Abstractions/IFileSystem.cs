@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Plugin.FileSystem.Abstractions
 {
@@ -13,8 +14,16 @@ namespace Plugin.FileSystem.Abstractions
 
         IDirectoryInfo InstallLocation { get; }
 
+        Task<IFileInfo> PickFileAsync(IEnumerable<string> extensionsFilter = null);
+
+        Task<IFileInfo[]> PickFilesAsync(IEnumerable<string> extensionsFilter = null);
+
+        Task<IFileInfo> PickSaveFileAsync(string defaultExtension);
+
+        Task<IDirectoryInfo> PickDirectoryAsync();
+
         Task<IFileInfo> GetFileFromPathAsync(string path);
 
-        Task<IDirectoryInfo> GetFolderFromPathAsync(string path);
+        Task<IDirectoryInfo> GetDirectoryFromPathAsync(string path);
     }
 }

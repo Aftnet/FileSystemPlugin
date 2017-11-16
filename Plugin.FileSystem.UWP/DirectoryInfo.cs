@@ -18,7 +18,12 @@ namespace Plugin.FileSystem
 
         public string FullName => NativeItem.Path;
 
-        public async Task<IDirectoryInfo> CreateSubdirectoryAsync(string name)
+        public Task RenameAsync(string name)
+        {
+            return NativeItem.RenameAsync(name).AsTask();
+        }
+
+        public async Task<IDirectoryInfo> CreateDirectoryAsync(string name)
         {
             var newFolder = await NativeItem.CreateFolderAsync(name);
             return new DirectoryInfo(newFolder);
@@ -47,7 +52,7 @@ namespace Plugin.FileSystem
             return files.Select(d => new FileInfo(d)).ToArray();
         }
 
-        public async Task<IEnumerable<IFileSystemInfo>> EnumerateFileSystemInfosAsync()
+        public async Task<IEnumerable<IFileSystemInfo>> EnumerateItemsAsync()
         {
             var folders = await EnumerateDirectoriesAsync();
             var files = await EnumerateFilesAsync();
@@ -65,6 +70,25 @@ namespace Plugin.FileSystem
         {
             var parent = await NativeItem.GetParentAsync();
             return new DirectoryInfo(parent);
+        }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as DirectoryInfo;
+            if (obj == null)
+                return false;
+
+            return FullName == other.FullName;
+        }
+
+        public override int GetHashCode()
+        {
+            return FullName.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return FullName;
         }
     }
 }

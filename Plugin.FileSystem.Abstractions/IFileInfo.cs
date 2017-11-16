@@ -10,7 +10,11 @@ namespace Plugin.FileSystem.Abstractions
     {
         Task<ulong> GetLengthAsync();
 
+        Task<IFileInfo> CopyToAsync(IDirectoryInfo destFolder, bool overwrite = true);
+
         Task<IFileInfo> CopyToAsync(IDirectoryInfo destFolder, string destFileName, bool overwrite = true);
+
+        Task MoveToAsync(IDirectoryInfo destFolder, bool overwrite = true);
 
         Task MoveToAsync(IDirectoryInfo destFolder, string destFileName, bool overwrite = true);
 

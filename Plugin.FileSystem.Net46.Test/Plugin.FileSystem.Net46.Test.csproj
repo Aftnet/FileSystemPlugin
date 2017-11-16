@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C02129B9-5FD5-43EA-A542-641A641AA707}</ProjectGuid>
+    <ProjectGuid>{D48A26BF-B77E-45E6-BD73-454DD7AFB95F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Plugin.FileSystem</RootNamespace>
-    <AssemblyName>Plugin.FileSystem</AssemblyName>
+    <RootNamespace>Plugin.FileSystem.Net46.Test</RootNamespace>
+    <AssemblyName>Plugin.FileSystem.Net46.Test</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,29 +32,38 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileSystem.cs" />
+    <Compile Include="Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="System.IO.FileSystem">
-      <Version>4.3.0</Version>
-    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Plugin.FileSystem.Abstractions\Plugin.FileSystem.Abstractions.csproj">
       <Project>{18ff9418-0ae5-4ba4-a2e9-27ce09e43c91}</Project>
       <Name>Plugin.FileSystem.Abstractions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Plugin.FileSystem.Common\Plugin.FileSystem.Common.csproj">
-      <Project>{3a1b4c53-6de8-4eb8-9f8d-deea8cc6c661}</Project>
-      <Name>Plugin.FileSystem.Common</Name>
+    <ProjectReference Include="..\Plugin.FileSystem.Net46\Plugin.FileSystem.Net46.csproj">
+      <Project>{c02129b9-5fd5-43ea-a542-641a641aa707}</Project>
+      <Name>Plugin.FileSystem.Net46</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Plugin.FileSystem.Test\Plugin.FileSystem.Test.csproj">
+      <Project>{cd7e51ad-a9aa-45a6-bf5d-b129c5fc8c6d}</Project>
+      <Name>Plugin.FileSystem.Test</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="..\Plugin.FileSystem.Shared\Plugin.FileSystem.Shared.projitems" Label="Shared" />
+  <ItemGroup>
+    <PackageReference Include="xunit">
+      <Version>2.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="xunit.runner.visualstudio">
+      <Version>2.3.1</Version>
+    </PackageReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
