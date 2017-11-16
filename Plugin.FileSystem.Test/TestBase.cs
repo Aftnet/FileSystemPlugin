@@ -42,7 +42,7 @@ namespace Plugin.FileSystem.Test
             await folderOne.RenameAsync(newName);
 
             var folders = await TestRootFolder.EnumerateDirectoriesAsync();
-            Assert.Collection(folders, d => Assert.Equal(folderOne, d));
+            Assert.Equal(newName, folderOne.Name);
 
             var parent = await folderOne.GetParentAsync();
             Assert.Equal(TestRootFolder, parent);
