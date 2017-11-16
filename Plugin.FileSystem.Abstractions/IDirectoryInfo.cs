@@ -16,6 +16,6 @@ namespace Plugin.FileSystem.Abstractions
         
         Task<IEnumerable<IFileInfo>> EnumerateFilesAsync();
         
-        Task<IEnumerable<IFileSystemInfo>> EnumerateFileItemsAsync();
+        Task<IEnumerable<IFileSystemInfo>> EnumerateItemsAsync();
     }
 }

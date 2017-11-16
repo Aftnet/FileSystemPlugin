@@ -1,6 +1,7 @@
 ﻿using Plugin.FileSystem.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,6 +16,12 @@ namespace Plugin.FileSystem
         public string Name => NativeItem.Name;
 
         public string FullName => NativeItem.FullName;
+
+        public Task RenameAsync(string name)
+        {
+            var newPath = Path.Combine(NativeItem.Parent.FullName, name);
+            return Task.Run(() => NativeItem.MoveTo(newPath));
+        }
 
         public async Task<IFileInfo> CreateFileAsync(string name)
         {
@@ -58,7 +65,7 @@ namespace Plugin.FileSystem
             return output;
         }
 
-        public async Task<IEnumerable<IFileSystemInfo>> EnumerateFileItemsAsync()
+        public async Task<IEnumerable<IFileSystemInfo>> EnumerateItemsAsync()
         {
             var folders = await EnumerateDirectoriesAsync();
             var files = await EnumerateFilesAsync();

@@ -16,6 +16,11 @@ namespace Plugin.FileSystem
 
         public string FullName => NativeItem.Path;
 
+        public Task RenameAsync(string name)
+        {
+            return NativeItem.RenameAsync(name).AsTask();
+        }
+
         public Task<IFileInfo> CopyToAsync(IDirectoryInfo destFolder, bool overwrite = true)
         {
             return CopyToAsync(destFolder, Name, overwrite);

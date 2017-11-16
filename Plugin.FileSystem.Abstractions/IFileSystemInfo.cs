@@ -13,6 +13,8 @@ namespace Plugin.FileSystem.Abstractions
 
         Task<IDirectoryInfo> GetParentAsync();
 
+        Task RenameAsync(string name);
+
         Task DeleteAsync();
     }
 }

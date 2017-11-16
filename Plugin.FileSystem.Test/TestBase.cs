@@ -2,6 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using Xunit;
+using System.Linq;
 
 namespace Plugin.FileSystem.Test
 {
@@ -22,6 +23,19 @@ namespace Plugin.FileSystem.Test
         }
 
         [Fact]
+        public async Task FolderOperationsWork()
+        {
+            var folderOne = await TestRootFolder.CreateDirectoryAsync("TestFolderOne");
+
+            var folders = await TestRootFolder.EnumerateDirectoriesAsync();
+            var items = await TestRootFolder.EnumerateItemsAsync();
+            Assert.Collection(folders, d => Assert.Equal(folderOne, d));
+            Assert.Single(items);
+
+            string newName = nameof(newName);
+        }
+
+        [Fact]
         public async Task FileOperationsWork()
         {
             var testBuffer = new byte[128];
@@ -31,7 +45,7 @@ namespace Plugin.FileSystem.Test
             var folderOne = await TestRootFolder.CreateDirectoryAsync("TestFolderOne");
             var folderTwo = await TestRootFolder.CreateDirectoryAsync("TestFolderTwo");
 
-            var items = await TestRootFolder.EnumerateFileItemsAsync();
+            var items = await TestRootFolder.EnumerateItemsAsync();
             Assert.Collection(items, d => Assert.Equal(d, folderOne), d => Assert.Equal(d, folderTwo));
 
             var file = await folderOne.CreateFileAsync("FileName.ext");
