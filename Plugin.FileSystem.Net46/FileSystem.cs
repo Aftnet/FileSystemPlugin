@@ -91,7 +91,7 @@ namespace Plugin.FileSystem
         {
             if (extensionsFilter == null || !extensionsFilter.Any())
             {
-                return DefaultFilter;
+                return $"All files | {DefaultFilter}";
             }
 
             var output = string.Join(";", extensionsFilter.Select(d => $"*{d}"));

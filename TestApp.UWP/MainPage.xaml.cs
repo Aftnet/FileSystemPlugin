@@ -1,5 +1,6 @@
 ﻿using Plugin.FileSystem;
 using Plugin.FileSystem.Abstractions;
+using System.Collections.Generic;
 using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -13,6 +14,8 @@ namespace TestApp.UWP
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private static readonly string[] FilterExt = { ".txt" };
+
         private IFileSystem FS => CrossFileSystem.Current;
 
         public MainPage()
@@ -20,9 +23,19 @@ namespace TestApp.UWP
             this.InitializeComponent();
         }
 
-        private async void OpenFile_Click(object sender, RoutedEventArgs e)
+        private void OpenFile_Click(object sender, RoutedEventArgs e)
         {
-            var file = await FS.PickFileAsync();
+            OpenFileHandler(null);
+        }
+
+        private void OpenFileTxt_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileHandler(FilterExt);
+        }
+
+        private async void OpenFileHandler(IEnumerable<string> extensions)
+        {
+            var file = await FS.PickFileAsync(extensions);
             if (file == null)
                 return;
 
@@ -32,9 +45,19 @@ namespace TestApp.UWP
             }
         }
 
-        private async void OpenFiles_Click(object sender, RoutedEventArgs e)
+        private void OpenFiles_Click(object sender, RoutedEventArgs e)
         {
-            var files = await FS.PickFilesAsync();
+            OpenFilesHandler(null);
+        }
+
+        private void OpenFilesTxt_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFilesHandler(FilterExt);
+        }
+
+        private async void OpenFilesHandler(IEnumerable<string> extensions)
+        {
+            var files = await FS.PickFilesAsync(extensions);
             if (files == null)
                 return;
 

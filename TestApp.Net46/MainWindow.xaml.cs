@@ -1,19 +1,8 @@
 ﻿using Plugin.FileSystem;
 using Plugin.FileSystem.Abstractions;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace TestApp.Net46
 {
@@ -22,6 +11,8 @@ namespace TestApp.Net46
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static readonly string[] FilterExt = { ".txt", ".docx" };
+
         private IFileSystem FS => CrossFileSystem.Current;
 
         public MainWindow()
@@ -29,9 +20,19 @@ namespace TestApp.Net46
             InitializeComponent();
         }
 
-        private async void OpenFile_Click(object sender, RoutedEventArgs e)
+        private void OpenFile_Click(object sender, RoutedEventArgs e)
         {
-            var file = await FS.PickFileAsync();
+            OpenFileHandler(null);
+        }
+
+        private void OpenFileTxt_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileHandler(FilterExt);
+        }
+
+        private async void OpenFileHandler(IEnumerable<string> extensions)
+        {
+            var file = await FS.PickFileAsync(extensions);
             if (file == null)
                 return;
 
@@ -41,9 +42,19 @@ namespace TestApp.Net46
             }
         }
 
-        private async void OpenFiles_Click(object sender, RoutedEventArgs e)
+        private void OpenFiles_Click(object sender, RoutedEventArgs e)
         {
-            var files = await FS.PickFilesAsync();
+            OpenFilesHandler(null);
+        }
+
+        private void OpenFilesTxt_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFilesHandler(FilterExt);
+        }
+
+        private async void OpenFilesHandler(IEnumerable<string> extensions)
+        {
+            var files = await FS.PickFilesAsync(extensions);
             if (files == null)
                 return;
 
