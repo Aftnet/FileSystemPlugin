@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2008
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plugin.FileSystem.Abstractions", "Plugin.FileSystem.Abstractions\Plugin.FileSystem.Abstractions.csproj", "{18FF9418-0AE5-4BA4-A2E9-27CE09E43C91}"
 EndProject
@@ -23,9 +23,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.FileSystem.Android",
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Plugin.FileSystem.Shared", "Plugin.FileSystem.Shared\Plugin.FileSystem.Shared.shproj", "{16F76369-4D05-484A-9B60-6DD64D08A307}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.FileSystem.Test", "Plugin.FileSystem.Test\Plugin.FileSystem.Test.csproj", "{CD7E51AD-A9AA-45A6-BF5D-B129C5FC8C6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plugin.FileSystem.Test", "Plugin.FileSystem.Test\Plugin.FileSystem.Test.csproj", "{CD7E51AD-A9AA-45A6-BF5D-B129C5FC8C6D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.FileSystem.Net46.Test", "Plugin.FileSystem.Net46.Test\Plugin.FileSystem.Net46.Test.csproj", "{D48A26BF-B77E-45E6-BD73-454DD7AFB95F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.FileSystem.UWP.Test", "Plugin.FileSystem.UWP.Test\Plugin.FileSystem.UWP.Test.csproj", "{A5476FB7-62F8-4020-A95C-F7B11AC0AB01}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -174,6 +176,26 @@ Global
 		{D48A26BF-B77E-45E6-BD73-454DD7AFB95F}.Release|x64.Build.0 = Release|Any CPU
 		{D48A26BF-B77E-45E6-BD73-454DD7AFB95F}.Release|x86.ActiveCfg = Release|Any CPU
 		{D48A26BF-B77E-45E6-BD73-454DD7AFB95F}.Release|x86.Build.0 = Release|Any CPU
+		{A5476FB7-62F8-4020-A95C-F7B11AC0AB01}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{A5476FB7-62F8-4020-A95C-F7B11AC0AB01}.Debug|ARM.ActiveCfg = Debug|ARM
+		{A5476FB7-62F8-4020-A95C-F7B11AC0AB01}.Debug|ARM.Build.0 = Debug|ARM
+		{A5476FB7-62F8-4020-A95C-F7B11AC0AB01}.Debug|ARM.Deploy.0 = Debug|ARM
+		{A5476FB7-62F8-4020-A95C-F7B11AC0AB01}.Debug|x64.ActiveCfg = Debug|x64
+		{A5476FB7-62F8-4020-A95C-F7B11AC0AB01}.Debug|x64.Build.0 = Debug|x64
+		{A5476FB7-62F8-4020-A95C-F7B11AC0AB01}.Debug|x64.Deploy.0 = Debug|x64
+		{A5476FB7-62F8-4020-A95C-F7B11AC0AB01}.Debug|x86.ActiveCfg = Debug|x86
+		{A5476FB7-62F8-4020-A95C-F7B11AC0AB01}.Debug|x86.Build.0 = Debug|x86
+		{A5476FB7-62F8-4020-A95C-F7B11AC0AB01}.Debug|x86.Deploy.0 = Debug|x86
+		{A5476FB7-62F8-4020-A95C-F7B11AC0AB01}.Release|Any CPU.ActiveCfg = Release|x86
+		{A5476FB7-62F8-4020-A95C-F7B11AC0AB01}.Release|ARM.ActiveCfg = Release|ARM
+		{A5476FB7-62F8-4020-A95C-F7B11AC0AB01}.Release|ARM.Build.0 = Release|ARM
+		{A5476FB7-62F8-4020-A95C-F7B11AC0AB01}.Release|ARM.Deploy.0 = Release|ARM
+		{A5476FB7-62F8-4020-A95C-F7B11AC0AB01}.Release|x64.ActiveCfg = Release|x64
+		{A5476FB7-62F8-4020-A95C-F7B11AC0AB01}.Release|x64.Build.0 = Release|x64
+		{A5476FB7-62F8-4020-A95C-F7B11AC0AB01}.Release|x64.Deploy.0 = Release|x64
+		{A5476FB7-62F8-4020-A95C-F7B11AC0AB01}.Release|x86.ActiveCfg = Release|x86
+		{A5476FB7-62F8-4020-A95C-F7B11AC0AB01}.Release|x86.Build.0 = Release|x86
+		{A5476FB7-62F8-4020-A95C-F7B11AC0AB01}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
