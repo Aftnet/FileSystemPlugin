@@ -35,7 +35,7 @@ namespace Plugin.FileSystem
             GenerateExtensionFilterForPicker(picker.FileTypeFilter, extensionsFilter);
 
             var file = await picker.PickSingleFileAsync();
-            return new FileInfo(file);
+            return file != null ? new FileInfo(file) : null;
         }
 
         public async Task<IFileInfo[]> PickFilesAsync(IEnumerable<string> extensionsFilter = null)
@@ -44,17 +44,17 @@ namespace Plugin.FileSystem
             GenerateExtensionFilterForPicker(picker.FileTypeFilter, extensionsFilter);
 
             var files = await picker.PickMultipleFilesAsync();
-            var output = files.Select(d => new FileInfo(d)).ToArray();
+            var output = files != null ? files.Select(d => new FileInfo(d)).ToArray() : null;
             return output;
         }
 
         public async Task<IFileInfo> PickSaveFileAsync(string defaultExtension)
         {
             var picker = new FileSavePicker();
-            picker.DefaultFileExtension = defaultExtension;
+            picker.FileTypeChoices.Add("File", new List<string> { defaultExtension });
 
             var file = await picker.PickSaveFileAsync();
-            return new FileInfo(file);
+            return file != null ? new FileInfo(file) : null;
         }
 
 
@@ -64,6 +64,11 @@ namespace Plugin.FileSystem
             picker.FileTypeFilter.Add(DefaultExtensionFilter);
 
             var folder = await picker.PickSingleFolderAsync();
+            if (folder == null)
+            {
+                return null;
+            }
+
             var folderId = GenerateFutureAccessListId();
             StorageApplicationPermissions.FutureAccessList.AddOrReplace(folderId, folder);
             return new DirectoryInfo(folder);

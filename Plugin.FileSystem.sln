@@ -29,6 +29,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.FileSystem.Net46.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.FileSystem.UWP.Test", "Plugin.FileSystem.UWP.Test\Plugin.FileSystem.UWP.Test.csproj", "{A5476FB7-62F8-4020-A95C-F7B11AC0AB01}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestApps", "TestApps", "{79EC076C-3D00-4FE0-A76D-7FDCEF045477}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp.UWP", "TestApp.UWP\TestApp.UWP.csproj", "{4D07BB62-261F-4170-AC1D-2182F42C510B}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Plugin.FileSystem.Shared\Plugin.FileSystem.Shared.projitems*{16f76369-4d05-484a-9b60-6dd64d08a307}*SharedItemsImports = 13
@@ -196,9 +200,32 @@ Global
 		{A5476FB7-62F8-4020-A95C-F7B11AC0AB01}.Release|x86.ActiveCfg = Release|x86
 		{A5476FB7-62F8-4020-A95C-F7B11AC0AB01}.Release|x86.Build.0 = Release|x86
 		{A5476FB7-62F8-4020-A95C-F7B11AC0AB01}.Release|x86.Deploy.0 = Release|x86
+		{4D07BB62-261F-4170-AC1D-2182F42C510B}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{4D07BB62-261F-4170-AC1D-2182F42C510B}.Debug|ARM.ActiveCfg = Debug|ARM
+		{4D07BB62-261F-4170-AC1D-2182F42C510B}.Debug|ARM.Build.0 = Debug|ARM
+		{4D07BB62-261F-4170-AC1D-2182F42C510B}.Debug|ARM.Deploy.0 = Debug|ARM
+		{4D07BB62-261F-4170-AC1D-2182F42C510B}.Debug|x64.ActiveCfg = Debug|x64
+		{4D07BB62-261F-4170-AC1D-2182F42C510B}.Debug|x64.Build.0 = Debug|x64
+		{4D07BB62-261F-4170-AC1D-2182F42C510B}.Debug|x64.Deploy.0 = Debug|x64
+		{4D07BB62-261F-4170-AC1D-2182F42C510B}.Debug|x86.ActiveCfg = Debug|x86
+		{4D07BB62-261F-4170-AC1D-2182F42C510B}.Debug|x86.Build.0 = Debug|x86
+		{4D07BB62-261F-4170-AC1D-2182F42C510B}.Debug|x86.Deploy.0 = Debug|x86
+		{4D07BB62-261F-4170-AC1D-2182F42C510B}.Release|Any CPU.ActiveCfg = Release|x86
+		{4D07BB62-261F-4170-AC1D-2182F42C510B}.Release|ARM.ActiveCfg = Release|ARM
+		{4D07BB62-261F-4170-AC1D-2182F42C510B}.Release|ARM.Build.0 = Release|ARM
+		{4D07BB62-261F-4170-AC1D-2182F42C510B}.Release|ARM.Deploy.0 = Release|ARM
+		{4D07BB62-261F-4170-AC1D-2182F42C510B}.Release|x64.ActiveCfg = Release|x64
+		{4D07BB62-261F-4170-AC1D-2182F42C510B}.Release|x64.Build.0 = Release|x64
+		{4D07BB62-261F-4170-AC1D-2182F42C510B}.Release|x64.Deploy.0 = Release|x64
+		{4D07BB62-261F-4170-AC1D-2182F42C510B}.Release|x86.ActiveCfg = Release|x86
+		{4D07BB62-261F-4170-AC1D-2182F42C510B}.Release|x86.Build.0 = Release|x86
+		{4D07BB62-261F-4170-AC1D-2182F42C510B}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4D07BB62-261F-4170-AC1D-2182F42C510B} = {79EC076C-3D00-4FE0-A76D-7FDCEF045477}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D44A510C-3EBB-41A1-8978-02C9043F024E}
