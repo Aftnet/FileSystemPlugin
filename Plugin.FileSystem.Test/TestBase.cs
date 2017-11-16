@@ -2,7 +2,6 @@
 using System;
 using System.Threading.Tasks;
 using Xunit;
-using System.Linq;
 
 namespace Plugin.FileSystem.Test
 {
@@ -42,7 +41,7 @@ namespace Plugin.FileSystem.Test
             await folderOne.RenameAsync(newName);
 
             var folders = await TestRootFolder.EnumerateDirectoriesAsync();
-            Assert.Equal(newName, folderOne.Name);
+            Assert.Collection(folders, d => Assert.Equal(newName, d.Name));
 
             var parent = await folderOne.GetParentAsync();
             Assert.Equal(TestRootFolder, parent);
@@ -59,6 +58,60 @@ namespace Plugin.FileSystem.Test
 
             folders = await TestRootFolder.EnumerateDirectoriesAsync();
             Assert.Empty(folders);
+        }
+
+        [Fact]
+        public async Task CreateFileWorks()
+        {
+            var fileOne = await TestRootFolder.CreateFileAsync("one.ext");
+
+            var files = await TestRootFolder.EnumerateFilesAsync();
+            var items = await TestRootFolder.EnumerateItemsAsync();
+            Assert.Collection(files, d => Assert.Equal(fileOne, d));
+            Assert.Single(items);
+        }
+
+        [Fact]
+        public async Task RenameFileWorks()
+        {
+            var fileOne = await TestRootFolder.CreateFileAsync("one.ext");
+
+            string newName = "Renamed.ext";
+            await fileOne.RenameAsync(newName);
+
+            var files = await TestRootFolder.EnumerateFilesAsync();
+            Assert.Collection(files, d => Assert.Equal(newName, d.Name));
+
+            var parent = await fileOne.GetParentAsync();
+            Assert.Equal(TestRootFolder, parent);
+        }
+
+        [Fact]
+        public async Task DeleteFileWorks()
+        {
+            var fileOne = await TestRootFolder.CreateFileAsync("one.ext");
+            var files = await TestRootFolder.EnumerateFilesAsync();
+            Assert.Collection(files, d => Assert.Equal(fileOne, d));
+
+            await fileOne.DeleteAsync();
+
+            files = await TestRootFolder.EnumerateFilesAsync();
+            Assert.Empty(files);
+        }
+
+        [Fact]
+        public async Task CopyFileWorks()
+        {
+        }
+
+        [Fact]
+        public async Task MoveFileWorks()
+        {
+        }
+
+        [Fact]
+        public async Task OpenFileWorks()
+        {
         }
 
         [Fact]
@@ -89,8 +142,6 @@ namespace Plugin.FileSystem.Test
             Assert.Empty(files);
             files = await folderTwo.EnumerateFilesAsync();
             Assert.Collection(files, d => Assert.Equal(file, d));
-
-            file.CopyToAsync(folderOne);
         }
 
         [Fact]
