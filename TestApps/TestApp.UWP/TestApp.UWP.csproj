@@ -132,11 +132,11 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Plugin.FileSystem.Abstractions\Plugin.FileSystem.Abstractions.csproj">
+    <ProjectReference Include="..\..\Plugin.FileSystem.Abstractions\Plugin.FileSystem.Abstractions.csproj">
       <Project>{18ff9418-0ae5-4ba4-a2e9-27ce09e43c91}</Project>
       <Name>Plugin.FileSystem.Abstractions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Plugin.FileSystem.UWP\Plugin.FileSystem.UWP.csproj">
+    <ProjectReference Include="..\..\Plugin.FileSystem.UWP\Plugin.FileSystem.UWP.csproj">
       <Project>{a25a4b76-5ded-42fd-aa9f-c94203398a23}</Project>
       <Name>Plugin.FileSystem.UWP</Name>
     </ProjectReference>
