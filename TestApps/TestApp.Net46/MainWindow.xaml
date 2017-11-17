@@ -8,10 +8,12 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Content="Open File" Click="OpenFile_Click" Padding="16" Margin="4"/>
-            <Button Content="Open Files" Click="OpenFiles_Click" Padding="16" Margin="4"/>
-            <Button Content="Open Folder" Click="OpenFolder_Click" Padding="16" Margin="4"/>
-            <Button Content="Save File" Click="SaveFile_Click" Padding="16" Margin="4"/>
+            <Button Content="Open File" Click="OpenFile_Click" Padding="8" Margin="4"/>
+            <Button Content="Open Txt" Click="OpenFileTxt_Click" Padding="8" Margin="4"/>
+            <Button Content="Open Files" Click="OpenFiles_Click" Padding="8" Margin="4"/>
+            <Button Content="Open Files Txt" Click="OpenFilesTxt_Click" Padding="8" Margin="4"/>
+            <Button Content="Open Folder" Click="OpenFolder_Click" Padding="8" Margin="4"/>
+            <Button Content="Save File" Click="SaveFile_Click" Padding="8" Margin="4"/>
         </StackPanel>
     </Grid>
 </Window>
