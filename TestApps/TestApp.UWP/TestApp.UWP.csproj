@@ -140,6 +140,10 @@
       <Project>{a25a4b76-5ded-42fd-aa9f-c94203398a23}</Project>
       <Name>Plugin.FileSystem.UWP</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TestApp.Shared\TestApp.Shared.csproj">
+      <Project>{94e8259b-d484-426b-9efd-ab13e6027c64}</Project>
+      <Name>TestApp.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

@@ -1,8 +1,6 @@
 ﻿using Plugin.FileSystem;
-using Plugin.FileSystem.Abstractions;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
+using TestApp.Shared;
 
 namespace TestApp.Net46
 {
@@ -11,9 +9,7 @@ namespace TestApp.Net46
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static readonly string[] FilterExt = { ".txt", ".docx" };
-
-        private IFileSystem FS => CrossFileSystem.Current;
+        private readonly EventHandler Handler = new EventHandler(CrossFileSystem.Current);
 
         public MainWindow()
         {
@@ -22,72 +18,32 @@ namespace TestApp.Net46
 
         private void OpenFile_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileHandler(null);
+            Handler.OpenFile();
         }
 
         private void OpenFileTxt_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileHandler(FilterExt);
-        }
-
-        private async void OpenFileHandler(IEnumerable<string> extensions)
-        {
-            var file = await FS.PickFileAsync(extensions);
-            if (file == null)
-                return;
-
-            using (var stream = await file.OpenAsync(System.IO.FileAccess.Read))
-            {
-
-            }
+            Handler.OpenFileTxt();
         }
 
         private void OpenFiles_Click(object sender, RoutedEventArgs e)
         {
-            OpenFilesHandler(null);
+            Handler.OpenFiles();
         }
 
         private void OpenFilesTxt_Click(object sender, RoutedEventArgs e)
         {
-            OpenFilesHandler(FilterExt);
+            Handler.OpenFilesTxt();
         }
 
-        private async void OpenFilesHandler(IEnumerable<string> extensions)
+        private void OpenFolder_Click(object sender, RoutedEventArgs e)
         {
-            var files = await FS.PickFilesAsync(extensions);
-            if (files == null)
-                return;
-
-            var file = files.FirstOrDefault();
-            if (file == null)
-                return;
-
-            using (var stream = await file.OpenAsync(System.IO.FileAccess.Read))
-            {
-
-            }
+            Handler.OpenFolder();
         }
 
-        private async void OpenFolder_Click(object sender, RoutedEventArgs e)
+        private void SaveFile_Click(object sender, RoutedEventArgs e)
         {
-            var folder = await FS.PickDirectoryAsync();
-            if (folder == null)
-                return;
-
-            var items = await folder.EnumerateItemsAsync();
-            var count = items.Count();
-        }
-
-        private async void SaveFile_Click(object sender, RoutedEventArgs e)
-        {
-            var file = await FS.PickSaveFileAsync(".lol");
-            if (file == null)
-                return;
-
-            using (var stream = await file.OpenAsync(System.IO.FileAccess.ReadWrite))
-            {
-
-            }
+            Handler.SaveFile();
         }
     }
 }

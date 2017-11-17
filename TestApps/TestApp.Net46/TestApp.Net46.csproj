@@ -106,6 +106,10 @@
       <Project>{c02129b9-5fd5-43ea-a542-641a641aa707}</Project>
       <Name>Plugin.FileSystem.Net46</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TestApp.Shared\TestApp.Shared.csproj">
+      <Project>{94e8259b-d484-426b-9efd-ab13e6027c64}</Project>
+      <Name>TestApp.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.IO.FileSystem">

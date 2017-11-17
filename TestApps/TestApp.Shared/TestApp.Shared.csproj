@@ -4,4 +4,8 @@
     <TargetFramework>netstandard1.4</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Plugin.FileSystem.Abstractions\Plugin.FileSystem.Abstractions.csproj" />
+  </ItemGroup>
+
 </Project>
