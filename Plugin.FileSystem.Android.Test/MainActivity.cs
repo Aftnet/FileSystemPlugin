@@ -7,19 +7,18 @@ using Xunit.Sdk;
 namespace Plugin.FileSystem.Android.Test
 {
     [Activity(Label = "xUnit Android Runner", MainLauncher = true, Theme = "@android:style/Theme.Material.Light")]
-public class MainActivity : RunnerActivity
-{
-
-    protected override void OnCreate(Bundle bundle)
+    public class MainActivity : RunnerActivity
     {
-        // tests can be inside the main assembly
-        AddTestAssembly(Assembly.GetExecutingAssembly());
+        protected override void OnCreate(Bundle bundle)
+        {
+            // tests can be inside the main assembly
+            AddTestAssembly(Assembly.GetExecutingAssembly());
 
-        AddExecutionAssembly(typeof(ExtensibilityPointFactory).Assembly);
-        // or in any reference assemblies			
+            AddExecutionAssembly(typeof(ExtensibilityPointFactory).Assembly);
+            // or in any reference assemblies			
 
-        AddTestAssembly(typeof(FileSystem.Test.TestBase).Assembly);
-        // or in any assembly that you load (since JIT is available)
+            AddTestAssembly(typeof(FileSystem.Test.TestBase).Assembly);
+            // or in any assembly that you load (since JIT is available)
 
 #if false
 			// you can use the default or set your own custom writer (e.g. save to web site and tweet it ;-)
@@ -29,8 +28,8 @@ public class MainActivity : RunnerActivity
 			// crash the application (to ensure it's ended) and return to springboard
 			TerminateAfterExecution = true;
 #endif
-        // you cannot add more assemblies once calling base
-        base.OnCreate(bundle);
+            // you cannot add more assemblies once calling base
+            base.OnCreate(bundle);
+        }
     }
-}
 }
