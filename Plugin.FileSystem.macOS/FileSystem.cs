@@ -10,38 +10,37 @@ namespace Plugin.FileSystem
 {
     internal class FileSystem : FileSystemBase
     {
+        private const int UIThreadRecoveryTimeMs = 100;
+        private static readonly nint OkResponseCode = 1;
+
         public override IDirectoryInfo LocalStorage => GetSpecialFolder(Environment.SpecialFolder.LocalApplicationData);
 
         public override IDirectoryInfo RoamingStorage => GetSpecialFolder(Environment.SpecialFolder.ApplicationData);
 
         public override IDirectoryInfo InstallLocation => new DirectoryInfo(new System.IO.DirectoryInfo(NSBundle.MainBundle.BundlePath));
 
-        public override Task<IFileInfo> PickFileAsync(IEnumerable<string> extensionsFilter = null)
+        public override async Task<IFileInfo> PickFileAsync(IEnumerable<string> extensionsFilter = null)
         {
-            var panel = new NSOpenPanel
-            {
-                //AllowedFileTypes = GeneratePanelFilter(extensionsFilter)
-            };
+            var output = default(IFileInfo);
 
-            if (panel.RunModal() != 1)
+            var paths = await GetPathsFromOpenFileDialog(false, false, extensionsFilter);
+            var path = paths.FirstOrDefault();
+            if (path != null)
             {
-                return Task.FromResult(default(IFileInfo));
+                output = new FileInfo(new System.IO.FileInfo(path));
             }
 
-            var uri = panel.Urls.FirstOrDefault();
-            if (uri == null)
-            {
-                return Task.FromResult(default(IFileInfo));
-            }
-
-            var path = uri.Path;
-            var output = new FileInfo(new System.IO.FileInfo(path));
-            return Task.FromResult(output as IFileInfo);
+            return output;
         }
 
-        public override Task<IFileInfo[]> PickFilesAsync(IEnumerable<string> extensionsFilter = null)
+        public override async Task<IFileInfo[]> PickFilesAsync(IEnumerable<string> extensionsFilter = null)
         {
-            return Task.FromResult(default(IFileInfo[]));
+            var output = default(IFileInfo[]);
+
+            var paths = await GetPathsFromOpenFileDialog(true, false, extensionsFilter);
+            output = paths.Select(d => new FileInfo(new System.IO.FileInfo(d))).ToArray(); 
+
+            return output;
         }
 
         public override Task<IFileInfo> PickSaveFileAsync(string defaultExtension)
@@ -49,9 +48,18 @@ namespace Plugin.FileSystem
             return Task.FromResult(default(IFileInfo));
         }
 
-        public override Task<IDirectoryInfo> PickDirectoryAsync()
+        public override async Task<IDirectoryInfo> PickDirectoryAsync()
         {
-            return Task.FromResult(default(IDirectoryInfo));
+            var output = default(IDirectoryInfo);
+
+            var paths = await GetPathsFromOpenFileDialog(false, true, null);
+            var path = paths.FirstOrDefault();
+            if (path != null)
+            {
+                output = new DirectoryInfo(new System.IO.DirectoryInfo(path));
+            }
+
+            return output;
         }
 
         private IDirectoryInfo GetSpecialFolder(Environment.SpecialFolder specialFolder)
@@ -61,14 +69,25 @@ namespace Plugin.FileSystem
             return new DirectoryInfo(folder);
         }
 
-        private static string[] GeneratePanelFilter(IEnumerable<string> extensionsFilter)
+        private static async Task<string[]> GetPathsFromOpenFileDialog(bool allowMultipleSelection, bool openFolder, IEnumerable<string> extensionsFilter)
         {
-            string[] output = null;
+            var panel = NSOpenPanel.OpenPanel;
+            panel.AllowsMultipleSelection = allowMultipleSelection;
+            panel.CanChooseFiles = !openFolder;
+            panel.CanChooseDirectories = openFolder;
+
             if (extensionsFilter != null && extensionsFilter.Any())
             {
-                output = extensionsFilter.Select(d => d.Substring(1)).ToArray();
+                panel.AllowedFileTypes = extensionsFilter.Select(d => d.Substring(1)).ToArray();
             }
 
+            if (panel.RunModal() != OkResponseCode)
+            {
+                return null;
+            }
+
+            await Task.Delay(UIThreadRecoveryTimeMs);
+            var output = panel.Urls?.Select(d => d.Path).ToArray();
             return output;
         }
     }
