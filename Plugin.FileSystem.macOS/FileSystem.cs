@@ -43,9 +43,22 @@ namespace Plugin.FileSystem
             return output;
         }
 
-        public override Task<IFileInfo> PickSaveFileAsync(string defaultExtension)
+        public override async Task<IFileInfo> PickSaveFileAsync(string defaultExtension)
         {
-            return Task.FromResult(default(IFileInfo));
+            var panel = NSSavePanel.SavePanel;
+            panel.AllowedFileTypes = new string[] { defaultExtension.Substring(1) };
+            panel.AllowsOtherFileTypes = false;
+
+            if (panel.RunModal() != OkResponseCode)
+            {
+                return null;
+            }
+
+            await Task.Delay(UIThreadRecoveryTimeMs);
+            var path = panel.Url?.Path;
+
+            var file = new System.IO.FileInfo(path);
+            return new FileInfo(file);
         }
 
         public override async Task<IDirectoryInfo> PickDirectoryAsync()
