@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plugin.FileSystem.Abstractions", "Plugin.FileSystem.Abstractions\Plugin.FileSystem.Abstractions.csproj", "{18FF9418-0AE5-4BA4-A2E9-27CE09E43C91}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.FileSystem.Abstractions", "Plugin.FileSystem.Abstractions\Plugin.FileSystem.Abstractions.csproj", "{18FF9418-0AE5-4BA4-A2E9-27CE09E43C91}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plugin.FileSystem.Common", "Plugin.FileSystem.Common\Plugin.FileSystem.Common.csproj", "{3A1B4C53-6DE8-4EB8-9F8D-DEEA8CC6C661}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.FileSystem.Common", "Plugin.FileSystem.Common\Plugin.FileSystem.Common.csproj", "{3A1B4C53-6DE8-4EB8-9F8D-DEEA8CC6C661}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.FileSystem.Net46", "Plugin.FileSystem.Net46\Plugin.FileSystem.Net46.csproj", "{C02129B9-5FD5-43EA-A542-641A641AA707}"
 EndProject
@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.FileSystem.Android",
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Plugin.FileSystem.Shared", "Plugin.FileSystem.Shared\Plugin.FileSystem.Shared.shproj", "{16F76369-4D05-484A-9B60-6DD64D08A307}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plugin.FileSystem.Test", "Plugin.FileSystem.Test\Plugin.FileSystem.Test.csproj", "{CD7E51AD-A9AA-45A6-BF5D-B129C5FC8C6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.FileSystem.Test", "Plugin.FileSystem.Test\Plugin.FileSystem.Test.csproj", "{CD7E51AD-A9AA-45A6-BF5D-B129C5FC8C6D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.FileSystem.Net46.Test", "Plugin.FileSystem.Net46.Test\Plugin.FileSystem.Net46.Test.csproj", "{D48A26BF-B77E-45E6-BD73-454DD7AFB95F}"
 EndProject
@@ -35,7 +35,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp.UWP", "TestApps\Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp.Net46", "TestApps\TestApp.Net46\TestApp.Net46.csproj", "{526E6EAA-75C9-4C0B-9687-221C9DEFDD48}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApp.Shared", "TestApps\TestApp.Shared\TestApp.Shared.csproj", "{94E8259B-D484-426B-9EFD-AB13E6027C64}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp.Shared", "TestApps\TestApp.Shared\TestApp.Shared.csproj", "{94E8259B-D484-426B-9EFD-AB13E6027C64}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.FileSystem.Android.Test", "Plugin.FileSystem.Android.Test\Plugin.FileSystem.Android.Test.csproj", "{0EBD06F8-DD2A-4A7C-B334-FFC720962235}"
 EndProject
@@ -44,6 +44,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp.iOS", "TestApps\TestApp.iOS\TestApp.iOS.csproj", "{2CBAFD96-17B5-4886-9D0A-36A24789877B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp.Android", "TestApps\TestApp.Android\TestApp.Android.csproj", "{F4A0EFE5-088B-447F-ACB9-0558CD1D9294}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.FileSystem.macOS", "Plugin.FileSystem.macOS\Plugin.FileSystem.macOS.csproj", "{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -888,6 +890,54 @@ Global
 		{F4A0EFE5-088B-447F-ACB9-0558CD1D9294}.Release|x86.ActiveCfg = Release|Any CPU
 		{F4A0EFE5-088B-447F-ACB9-0558CD1D9294}.Release|x86.Build.0 = Release|Any CPU
 		{F4A0EFE5-088B-447F-ACB9-0558CD1D9294}.Release|x86.Deploy.0 = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Ad-Hoc|Any CPU.ActiveCfg = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Ad-Hoc|Any CPU.Build.0 = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Ad-Hoc|ARM.ActiveCfg = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Ad-Hoc|ARM.Build.0 = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Ad-Hoc|iPhoneSimulator.Build.0 = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Ad-Hoc|x64.ActiveCfg = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Ad-Hoc|x64.Build.0 = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Ad-Hoc|x86.ActiveCfg = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Ad-Hoc|x86.Build.0 = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.AppStore|Any CPU.ActiveCfg = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.AppStore|Any CPU.Build.0 = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.AppStore|ARM.ActiveCfg = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.AppStore|ARM.Build.0 = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.AppStore|iPhone.Build.0 = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.AppStore|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.AppStore|iPhoneSimulator.Build.0 = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.AppStore|x64.ActiveCfg = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.AppStore|x64.Build.0 = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.AppStore|x86.ActiveCfg = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.AppStore|x86.Build.0 = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Debug|ARM.Build.0 = Debug|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Debug|x64.Build.0 = Debug|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Debug|x86.Build.0 = Debug|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Release|ARM.ActiveCfg = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Release|ARM.Build.0 = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Release|iPhone.Build.0 = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Release|x64.ActiveCfg = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Release|x64.Build.0 = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Release|x86.ActiveCfg = Release|Any CPU
+		{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
