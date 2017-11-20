@@ -20,7 +20,7 @@ namespace Plugin.FileSystem
         {
             var panel = new NSOpenPanel
             {
-                AllowedFileTypes = GeneratePanelFilter(extensionsFilter)
+                //AllowedFileTypes = GeneratePanelFilter(extensionsFilter)
             };
 
             if (panel.RunModal() != 1)
