@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Foundation;
 using Plugin.FileSystem.Abstractions;
+using AppKit;
+using System.Linq;
 
 namespace Plugin.FileSystem
 {
@@ -16,7 +18,25 @@ namespace Plugin.FileSystem
 
         public override Task<IFileInfo> PickFileAsync(IEnumerable<string> extensionsFilter = null)
         {
-            return Task.FromResult(default(IFileInfo));
+            var panel = new NSOpenPanel
+            {
+                AllowedFileTypes = GeneratePanelFilter(extensionsFilter)
+            };
+
+            if (panel.RunModal() != 1)
+            {
+                return Task.FromResult(default(IFileInfo));
+            }
+
+            var uri = panel.Urls.FirstOrDefault();
+            if (uri == null)
+            {
+                return Task.FromResult(default(IFileInfo));
+            }
+
+            var path = uri.Path;
+            var output = new FileInfo(new System.IO.FileInfo(path));
+            return Task.FromResult(output as IFileInfo);
         }
 
         public override Task<IFileInfo[]> PickFilesAsync(IEnumerable<string> extensionsFilter = null)
@@ -39,6 +59,17 @@ namespace Plugin.FileSystem
             var path = Environment.GetFolderPath(specialFolder);
             var folder = new System.IO.DirectoryInfo(path);
             return new DirectoryInfo(folder);
+        }
+
+        private static string[] GeneratePanelFilter(IEnumerable<string> extensionsFilter)
+        {
+            string[] output = null;
+            if (extensionsFilter != null && extensionsFilter.Any())
+            {
+                output = extensionsFilter.Select(d => d.Substring(1)).ToArray();
+            }
+
+            return output;
         }
     }
 }
