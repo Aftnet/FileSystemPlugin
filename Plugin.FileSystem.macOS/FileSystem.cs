@@ -24,7 +24,7 @@ namespace Plugin.FileSystem
             var output = default(IFileInfo);
 
             var paths = await GetPathsFromOpenFileDialog(false, false, extensionsFilter);
-            var path = paths.FirstOrDefault();
+            var path = paths?.FirstOrDefault();
             if (path != null)
             {
                 output = new FileInfo(new System.IO.FileInfo(path));
@@ -38,7 +38,7 @@ namespace Plugin.FileSystem
             var output = default(IFileInfo[]);
 
             var paths = await GetPathsFromOpenFileDialog(true, false, extensionsFilter);
-            output = paths.Select(d => new FileInfo(new System.IO.FileInfo(d))).ToArray(); 
+            output = paths?.Select(d => new FileInfo(new System.IO.FileInfo(d))).ToArray(); 
 
             return output;
         }
@@ -49,13 +49,18 @@ namespace Plugin.FileSystem
             panel.AllowedFileTypes = new string[] { defaultExtension.Substring(1) };
             panel.AllowsOtherFileTypes = false;
 
-            if (panel.RunModal() != OkResponseCode)
+            var modalResult = panel.RunModal();
+            await Task.Delay(UIThreadRecoveryTimeMs);
+            if (modalResult != OkResponseCode)
             {
                 return null;
             }
 
-            await Task.Delay(UIThreadRecoveryTimeMs);
             var path = panel.Url?.Path;
+            if (path == null)
+            {
+                return null;
+            }
 
             var file = new System.IO.FileInfo(path);
             return new FileInfo(file);
@@ -66,7 +71,7 @@ namespace Plugin.FileSystem
             var output = default(IDirectoryInfo);
 
             var paths = await GetPathsFromOpenFileDialog(false, true, null);
-            var path = paths.FirstOrDefault();
+            var path = paths?.FirstOrDefault();
             if (path != null)
             {
                 output = new DirectoryInfo(new System.IO.DirectoryInfo(path));
@@ -94,12 +99,13 @@ namespace Plugin.FileSystem
                 panel.AllowedFileTypes = extensionsFilter.Select(d => d.Substring(1)).ToArray();
             }
 
-            if (panel.RunModal() != OkResponseCode)
+            var modalResult = panel.RunModal();
+            await Task.Delay(UIThreadRecoveryTimeMs);
+            if (modalResult != OkResponseCode)
             {
                 return null;
             }
 
-            await Task.Delay(UIThreadRecoveryTimeMs);
             var output = panel.Urls?.Select(d => d.Path).ToArray();
             return output;
         }
