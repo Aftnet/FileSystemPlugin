@@ -1,5 +1,4 @@
-﻿using Plugin.FileSystem;
-using Plugin.FileSystem.Abstractions;
+﻿using Plugin.FileSystem.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -12,26 +11,26 @@ namespace Plugin.FileSystem
 
         public override IDirectoryInfo RoamingStorage => GetSpecialFolder(Environment.SpecialFolder.ApplicationData);
 
-        public override IDirectoryInfo InstallLocation => new DirectoryInfo(new System.IO.DirectoryInfo(Android.App.Application.Context.DataDir.AbsolutePath));
+        public override IDirectoryInfo InstallLocation => new DirectoryInfo(new System.IO.DirectoryInfo(Android.App.Application.Context.ApplicationInfo.DataDir));
 
         public override Task<IFileInfo> PickFileAsync(IEnumerable<string> extensionsFilter = null)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(default(IFileInfo));
         }
 
         public override Task<IFileInfo[]> PickFilesAsync(IEnumerable<string> extensionsFilter = null)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(default(IFileInfo[]));
         }
 
         public override Task<IFileInfo> PickSaveFileAsync(string defaultExtension)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(default(IFileInfo));
         }
 
         public override Task<IDirectoryInfo> PickDirectoryAsync()
         {
-            throw new NotImplementedException();
+            return Task.FromResult(default(IDirectoryInfo));
         }
 
         private IDirectoryInfo GetSpecialFolder(Environment.SpecialFolder specialFolder)

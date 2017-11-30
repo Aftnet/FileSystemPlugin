@@ -89,12 +89,13 @@ namespace Plugin.FileSystem
 
         private static string GenerateFilterString(IEnumerable<string> extensionsFilter)
         {
-            if (extensionsFilter == null || !extensionsFilter.Any())
+            var filter = DefaultFilter;
+            if (extensionsFilter != null && extensionsFilter.Any())
             {
-                return $"All files | {DefaultFilter}";
+                filter = string.Join(";", extensionsFilter.Select(d => $"*{d}"));
             }
 
-            var output = string.Join(";", extensionsFilter.Select(d => $"*{d}"));
+            var output = $"All files | {filter}";
             return output;
         }
     }

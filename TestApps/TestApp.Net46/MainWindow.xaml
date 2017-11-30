@@ -1,0 +1,19 @@
+﻿<Window x:Class="TestApp.Net46.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestApp.Net46"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="Open File" Click="OpenFile_Click" Padding="8" Margin="4"/>
+            <Button Content="Open Txt" Click="OpenFileTxt_Click" Padding="8" Margin="4"/>
+            <Button Content="Open Files" Click="OpenFiles_Click" Padding="8" Margin="4"/>
+            <Button Content="Open Files Txt" Click="OpenFilesTxt_Click" Padding="8" Margin="4"/>
+            <Button Content="Open Folder" Click="OpenFolder_Click" Padding="8" Margin="4"/>
+            <Button Content="Save File" Click="SaveFile_Click" Padding="8" Margin="4"/>
+        </StackPanel>
+    </Grid>
+</Window>

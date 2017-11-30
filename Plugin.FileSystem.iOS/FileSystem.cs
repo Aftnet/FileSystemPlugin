@@ -1,9 +1,8 @@
-﻿using Foundation;
-using Plugin.FileSystem;
-using Plugin.FileSystem.Abstractions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Foundation;
+using Plugin.FileSystem.Abstractions;
 
 namespace Plugin.FileSystem
 {
@@ -17,22 +16,22 @@ namespace Plugin.FileSystem
 
         public override Task<IFileInfo> PickFileAsync(IEnumerable<string> extensionsFilter = null)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(default(IFileInfo)); 
         }
 
         public override Task<IFileInfo[]> PickFilesAsync(IEnumerable<string> extensionsFilter = null)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(default(IFileInfo[])); 
         }
 
         public override Task<IFileInfo> PickSaveFileAsync(string defaultExtension)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(default(IFileInfo)); 
         }
 
         public override Task<IDirectoryInfo> PickDirectoryAsync()
         {
-            throw new NotImplementedException();
+            return Task.FromResult(default(IDirectoryInfo));
         }
 
         private IDirectoryInfo GetSpecialFolder(Environment.SpecialFolder specialFolder)
