@@ -13,9 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.FileSystem.UWP", "Pl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6F096297-5843-453D-9C14-F9A22BE9AA37}"
 	ProjectSection(SolutionItems) = preProject
+		AssemblyInfo.cs = AssemblyInfo.cs
 		Plugin.FileSystem.nuspec = Plugin.FileSystem.nuspec
 		readme.md = readme.md
-		SharedAssemblyInfo.cs = SharedAssemblyInfo.cs
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.FileSystem.iOS", "Plugin.FileSystem.iOS\Plugin.FileSystem.iOS.csproj", "{DD747FB2-17E7-4FDE-8DB3-3AE9E2643DB5}"

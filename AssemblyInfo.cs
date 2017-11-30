@@ -2,7 +2,7 @@ using System.Reflection;
 
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Aftnet")]
+[assembly: AssemblyCompany("Alberto Fustinoni")]
 [assembly: AssemblyProduct("FileSystem Xamarin Plugin")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
