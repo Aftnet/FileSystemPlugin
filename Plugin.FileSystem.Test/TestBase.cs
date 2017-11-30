@@ -1,6 +1,7 @@
 ﻿using Plugin.FileSystem.Abstractions;
 using System;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -180,11 +181,42 @@ namespace Plugin.FileSystem.Test
         }
 
         [Fact]
-        public void KnownDirectoriesWork()
+        public Task LocalStorageWorks()
         {
-            Assert.NotNull(FileSystem.InstallLocation);
-            Assert.NotNull(FileSystem.LocalStorage);
-            Assert.NotNull(FileSystem.RoamingStorage);
+            return TestDirectoryIsWriteable(FileSystem.LocalStorage);
+        }
+
+        [Fact]
+        public Task RoamingStorageWorks()
+        {
+            return TestDirectoryIsWriteable(FileSystem.RoamingStorage);
+        }
+
+        private async Task TestDirectoryIsWriteable(IDirectoryInfo directory)
+        {
+            const string fileName = "TestFile.ext";
+
+            Assert.NotNull(directory);
+            var file = await directory.CreateFileAsync(fileName);
+            Assert.NotNull(file);
+
+            var content = Encoding.UTF8.GetBytes("Some data");
+
+            using (var stream = await file.OpenAsync(System.IO.FileAccess.ReadWrite))
+            {
+                await stream.WriteAsync(content, 0, content.Length);
+                await stream.FlushAsync();
+            }
+
+            using (var stream = await file.OpenAsync(System.IO.FileAccess.Read))
+            {
+                Assert.Equal(content.Length, stream.Length);
+            }
+
+            await file.DeleteAsync();
+
+            var files = await directory.EnumerateFilesAsync();
+            Assert.DoesNotContain(files, d => d.Name == fileName);
         }
     }
 }
