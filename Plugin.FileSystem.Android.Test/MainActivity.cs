@@ -17,7 +17,7 @@ namespace Plugin.FileSystem.Android.Test
             AddExecutionAssembly(typeof(ExtensibilityPointFactory).Assembly);
             // or in any reference assemblies			
 
-            //AddTestAssembly(typeof(FileSystem.Test.TestBase).Assembly);
+            //AddTestAssembly(typeof(PortableTests).Assembly);
             // or in any assembly that you load (since JIT is available)
 
 #if false
