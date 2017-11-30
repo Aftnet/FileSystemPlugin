@@ -1,5 +1,6 @@
 ﻿using Plugin.FileSystem.Abstractions;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -159,6 +160,22 @@ namespace Plugin.FileSystem.Test
                 var comparison = new byte[data.Length];
                 await stream.ReadAsync(comparison, 0, comparison.Length);
                 Assert.Equal(data, comparison);
+            }
+        }
+
+        [Fact]
+        public async Task InstallLocationWorks()
+        {
+            var installLoaction = FileSystem.InstallLocation;
+            Assert.NotNull(installLoaction);
+
+            var files = await installLoaction.EnumerateFilesAsync();
+            var bundledFile = files.FirstOrDefault(d => d.Name == "TestBundledFile.txt");
+            Assert.NotNull(bundledFile);
+
+            using (var stream = await bundledFile.OpenAsync(System.IO.FileAccess.Read))
+            {
+                Assert.True(stream.Length > 0);
             }
         }
 
