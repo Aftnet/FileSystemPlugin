@@ -129,5 +129,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <BundleResource Include="..\Plugin.FileSystem.Test\TestBundledFile.txt">
+      <Link>Resources\TestBundledFile.txt</Link>
+    </BundleResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
