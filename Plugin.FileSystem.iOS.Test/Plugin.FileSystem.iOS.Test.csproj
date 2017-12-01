@@ -125,9 +125,14 @@
       <Version>2.3.1</Version>
     </PackageReference>
     <PackageReference Include="xunit.runner.devices">
-      <Version>2.2.0</Version>
+      <Version>2.3.2</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <BundleResource Include="..\Plugin.FileSystem.Test\TestBundledFile.txt">
+      <Link>Resources\TestBundledFile.txt</Link>
+    </BundleResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
