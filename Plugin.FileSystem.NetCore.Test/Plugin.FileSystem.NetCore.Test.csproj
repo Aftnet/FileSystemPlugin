@@ -2,9 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Include="..\Plugin.FileSystem.Test\TestBundledFile.txt" Link="TestBundledFile.txt">
@@ -22,6 +26,10 @@
     <ProjectReference Include="..\Plugin.FileSystem.Abstractions\Plugin.FileSystem.Abstractions.csproj" />
     <ProjectReference Include="..\Plugin.FileSystem.NetCore\Plugin.FileSystem.NetCore.csproj" />
     <ProjectReference Include="..\Plugin.FileSystem.Test\Plugin.FileSystem.Test.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>

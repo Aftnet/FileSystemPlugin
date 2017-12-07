@@ -2,13 +2,22 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AssemblyName>Plugin.FileSystem</AssemblyName>
     <RootNamespace>Plugin.FileSystem</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="..\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Plugin.FileSystem.Abstractions\Plugin.FileSystem.Abstractions.csproj" />
     <ProjectReference Include="..\Plugin.FileSystem.Common\Plugin.FileSystem.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 
   <Import Project="..\Plugin.FileSystem.Shared\Plugin.FileSystem.Shared.projitems" Label="Shared" />
