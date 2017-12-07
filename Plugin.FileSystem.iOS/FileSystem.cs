@@ -14,26 +14,6 @@ namespace Plugin.FileSystem
 
         public override IDirectoryInfo InstallLocation => new DirectoryInfo(new System.IO.DirectoryInfo(NSBundle.MainBundle.BundlePath));
 
-        public override Task<IFileInfo> PickFileAsync(IEnumerable<string> extensionsFilter = null)
-        {
-            return Task.FromResult(default(IFileInfo)); 
-        }
-
-        public override Task<IFileInfo[]> PickFilesAsync(IEnumerable<string> extensionsFilter = null)
-        {
-            return Task.FromResult(default(IFileInfo[])); 
-        }
-
-        public override Task<IFileInfo> PickSaveFileAsync(string defaultExtension)
-        {
-            return Task.FromResult(default(IFileInfo)); 
-        }
-
-        public override Task<IDirectoryInfo> PickDirectoryAsync()
-        {
-            return Task.FromResult(default(IDirectoryInfo));
-        }
-
         private IDirectoryInfo GetSpecialFolder(Environment.SpecialFolder specialFolder)
         {
             var path = Environment.GetFolderPath(specialFolder);
