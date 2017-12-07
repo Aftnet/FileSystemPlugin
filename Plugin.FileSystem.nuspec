@@ -32,7 +32,7 @@
     </dependencies>
   </metadata>
   <files>
-    <!--Core-->
+    <!--Standard-->
     <file src="Plugin.FileSystem\bin\$configuration$\netstandard1.3\Plugin.FileSystem.*" target="lib\netstandard1.3" />
     <!--UWP-->
     <file src="Plugin.FileSystem.UWP\bin\$configuration$\Plugin.FileSystem.*" target="lib\uap10.0" />
@@ -44,5 +44,7 @@
     <file src="Plugin.FileSystem.iOS\bin\$configuration$\Plugin.FileSystem.*" target="lib\Xamarin.iOS10" />
     <!--macOS-->
     <file src="Plugin.FileSystem.macOS\bin\$configuration$\Plugin.FileSystem.*" target="lib\Xamarin.Mac20" />
+    <!--Core-->
+    <file src="Plugin.FileSystem.NetCore\bin\$configuration$\netcoreapp2.0\Plugin.FileSystem.*" target="lib\netcoreapp2.0" />
   </files>
 </package>
