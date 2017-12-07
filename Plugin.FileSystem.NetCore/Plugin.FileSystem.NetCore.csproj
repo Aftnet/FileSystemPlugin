@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>Plugin.FileSystem</AssemblyName>
+    <RootNamespace>Plugin.FileSystem</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Plugin.FileSystem.Abstractions\Plugin.FileSystem.Abstractions.csproj" />
+    <ProjectReference Include="..\Plugin.FileSystem.Common\Plugin.FileSystem.Common.csproj" />
+  </ItemGroup>
+
+  <Import Project="..\Plugin.FileSystem.Shared\Plugin.FileSystem.Shared.projitems" Label="Shared" />
+
+</Project>

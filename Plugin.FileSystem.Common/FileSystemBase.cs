@@ -13,13 +13,25 @@ namespace Plugin.FileSystem
 
         public abstract IDirectoryInfo InstallLocation { get; }
 
-        public abstract Task<IFileInfo> PickFileAsync(IEnumerable<string> extensionsFilter = null);
+        public virtual Task<IFileInfo> PickFileAsync(IEnumerable<string> extensionsFilter = null)
+        {
+            return Task.FromResult(default(IFileInfo));
+        }
 
-        public abstract Task<IFileInfo[]> PickFilesAsync(IEnumerable<string> extensionsFilter = null);
+        public virtual Task<IFileInfo[]> PickFilesAsync(IEnumerable<string> extensionsFilter = null)
+        {
+            return Task.FromResult(default(IFileInfo[]));
+        }
 
-        public abstract Task<IFileInfo> PickSaveFileAsync(string defaultExtension);
+        public virtual Task<IFileInfo> PickSaveFileAsync(string defaultExtension)
+        {
+            return Task.FromResult(default(IFileInfo));
+        }
 
-        public abstract Task<IDirectoryInfo> PickDirectoryAsync();
+        public virtual Task<IDirectoryInfo> PickDirectoryAsync()
+        {
+            return Task.FromResult(default(IDirectoryInfo));
+        }
 
         public Task<IFileInfo> GetFileFromPathAsync(string path)
         {
