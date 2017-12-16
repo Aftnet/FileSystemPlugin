@@ -58,11 +58,23 @@ namespace Plugin.FileSystem
             return output;
         }
 
+        public async Task<IDirectoryInfo> GetDirectoryAsync(string name)
+        {
+            var folders = await EnumerateDirectoriesAsync();
+            return folders.FirstOrDefault(d => d.Name == name);
+        }
+
         public async Task<IEnumerable<IFileInfo>> EnumerateFilesAsync()
         {
             var files = await Task.Run(() => NativeItem.GetFiles());
             var output = files.Select(d => new FileInfo(d));
             return output;
+        }
+
+        public async Task<IFileInfo> GetFileAsync(string name)
+        {
+            var files = await EnumerateFilesAsync();
+            return files.FirstOrDefault(d => d.Name == name);
         }
 
         public async Task<IEnumerable<IFileSystemInfo>> EnumerateItemsAsync()
