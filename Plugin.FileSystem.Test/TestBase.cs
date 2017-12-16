@@ -26,12 +26,19 @@ namespace Plugin.FileSystem.Test
         [Fact]
         public async Task CreateFolderWorks()
         {
-            var folderOne = await TestRootFolder.CreateDirectoryAsync("Test");
+            var folderName = "Test";
+            var folderOne = await TestRootFolder.CreateDirectoryAsync(folderName);
 
             var folders = await TestRootFolder.EnumerateDirectoriesAsync();
             var items = await TestRootFolder.EnumerateItemsAsync();
+
             Assert.Collection(folders, d => Assert.Equal(folderOne, d));
             Assert.Single(items);
+
+            var item = await TestRootFolder.GetDirectoryAsync(folderName);
+            Assert.NotNull(item);
+            item = await TestRootFolder.GetDirectoryAsync("notExistent");
+            Assert.Null(item);
         }
 
         [Fact]
@@ -65,12 +72,18 @@ namespace Plugin.FileSystem.Test
         [Fact]
         public async Task CreateFileWorks()
         {
-            var fileOne = await TestRootFolder.CreateFileAsync("one.ext");
+            var fileName = "one.ext";
+            var fileOne = await TestRootFolder.CreateFileAsync(fileName);
 
             var files = await TestRootFolder.EnumerateFilesAsync();
             var items = await TestRootFolder.EnumerateItemsAsync();
             Assert.Collection(files, d => Assert.Equal(fileOne, d));
             Assert.Single(items);
+
+            var item = await TestRootFolder.GetFileAsync(fileName);
+            Assert.NotNull(item);
+            item = await TestRootFolder.GetFileAsync("notExistent");
+            Assert.Null(item);
         }
 
         [Fact]
