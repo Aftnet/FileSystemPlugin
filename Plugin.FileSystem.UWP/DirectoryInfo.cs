@@ -1,6 +1,7 @@
 ﻿using Plugin.FileSystem.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.Storage;
@@ -48,8 +49,15 @@ namespace Plugin.FileSystem
 
         public async Task<IDirectoryInfo> GetDirectoryAsync(string name)
         {
-            var folder = await NativeItem.GetFolderAsync(name);
-            return new DirectoryInfo(folder);
+            try
+            {
+                var folder = await NativeItem.GetFolderAsync(name);
+                return new DirectoryInfo(folder);
+            }
+            catch (FileNotFoundException)
+            {
+                return null;
+            }
         }
 
         public async Task<IEnumerable<IFileInfo>> EnumerateFilesAsync()
@@ -60,8 +68,15 @@ namespace Plugin.FileSystem
 
         public async Task<IFileInfo> GetFileAsync(string name)
         {
-            var file = await NativeItem.GetFileAsync(name);
-            return new FileInfo(file);
+            try
+            {
+                var file = await NativeItem.GetFileAsync(name);
+                return new FileInfo(file);
+            }
+            catch (FileNotFoundException)
+            {
+                return null;
+            }
         }
 
         public async Task<IEnumerable<IFileSystemInfo>> EnumerateItemsAsync()
