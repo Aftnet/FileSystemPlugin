@@ -1,7 +1,4 @@
 ﻿using Plugin.FileSystem.Abstractions;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Plugin.FileSystem
 {

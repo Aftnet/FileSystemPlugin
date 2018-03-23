@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Foundation;
+﻿using Foundation;
 using Plugin.FileSystem.Abstractions;
+using System;
 
 namespace Plugin.FileSystem
 {
