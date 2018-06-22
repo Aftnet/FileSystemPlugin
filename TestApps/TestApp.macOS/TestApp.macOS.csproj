@@ -88,17 +88,9 @@
     <InterfaceDefinition Include="Main.storyboard" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Plugin.FileSystem.Abstractions\Plugin.FileSystem.Abstractions.csproj">
+    <ProjectReference Include="..\..\Plugin.FileSystem\Plugin.FileSystem.csproj">
       <Project>{18FF9418-0AE5-4BA4-A2E9-27CE09E43C91}</Project>
-      <Name>Plugin.FileSystem.Abstractions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Plugin.FileSystem.Common\Plugin.FileSystem.Common.csproj">
-      <Project>{3A1B4C53-6DE8-4EB8-9F8D-DEEA8CC6C661}</Project>
-      <Name>Plugin.FileSystem.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Plugin.FileSystem.macOS\Plugin.FileSystem.macOS.csproj">
-      <Project>{A6A3DF74-C9C5-4CB5-994B-A9B2CE13ABC6}</Project>
-      <Name>Plugin.FileSystem.macOS</Name>
+      <Name>Plugin.FileSystem</Name>
     </ProjectReference>
     <ProjectReference Include="..\TestApp.Shared\TestApp.Shared.csproj">
       <Project>{94E8259B-D484-426B-9EFD-AB13E6027C64}</Project>

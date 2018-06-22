@@ -94,17 +94,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Plugin.FileSystem.Abstractions\Plugin.FileSystem.Abstractions.csproj">
+    <ProjectReference Include="..\..\Plugin.FileSystem\Plugin.FileSystem.csproj">
       <Project>{18ff9418-0ae5-4ba4-a2e9-27ce09e43c91}</Project>
-      <Name>Plugin.FileSystem.Abstractions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Plugin.FileSystem.Common\Plugin.FileSystem.Common.csproj">
-      <Project>{3a1b4c53-6de8-4eb8-9f8d-deea8cc6c661}</Project>
-      <Name>Plugin.FileSystem.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Plugin.FileSystem.Net46\Plugin.FileSystem.Net46.csproj">
-      <Project>{c02129b9-5fd5-43ea-a542-641a641aa707}</Project>
-      <Name>Plugin.FileSystem.Net46</Name>
+      <Name>Plugin.FileSystem</Name>
     </ProjectReference>
     <ProjectReference Include="..\TestApp.Shared\TestApp.Shared.csproj">
       <Project>{94e8259b-d484-426b-9efd-ab13e6027c64}</Project>

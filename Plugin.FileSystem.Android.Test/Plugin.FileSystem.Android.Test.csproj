@@ -82,21 +82,9 @@
     <Folder Include="Resources\mipmap-xxxhdpi\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Plugin.FileSystem.Abstractions\Plugin.FileSystem.Abstractions.csproj">
-      <Project>{18ff9418-0ae5-4ba4-a2e9-27ce09e43c91}</Project>
-      <Name>Plugin.FileSystem.Abstractions</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Plugin.FileSystem.Android\Plugin.FileSystem.Android.csproj">
       <Project>{b3c2208e-68f5-4d09-a092-39ed478e3b8e}</Project>
       <Name>Plugin.FileSystem.Android</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Plugin.FileSystem.Common\Plugin.FileSystem.Common.csproj">
-      <Project>{3a1b4c53-6de8-4eb8-9f8d-deea8cc6c661}</Project>
-      <Name>Plugin.FileSystem.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Plugin.FileSystem.Test\Plugin.FileSystem.Test.csproj">
-      <Project>{cd7e51ad-a9aa-45a6-bf5d-b129c5fc8c6d}</Project>
-      <Name>Plugin.FileSystem.Test</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
