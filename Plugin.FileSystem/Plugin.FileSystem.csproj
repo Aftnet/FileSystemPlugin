@@ -1,5 +1,9 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras/1.5.4">
 
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="rmdir %USERPROFILE%\.nuget\packages\xam.plugin.filesystem /Q /S" />
+  </Target>
+  
   <PropertyGroup>
     <TargetFrameworks>netstandard1.3;netcoreapp2.0;net46;uap10.0;Xamarin.iOS10;Xamarin.Mac20;MonoAndroid81</TargetFrameworks>
     <AssemblyName>Plugin.FileSystem</AssemblyName>
@@ -54,6 +58,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="$(TargetFramework.StartsWith('uap'))">
+    <Compile Include="Shared\CrossFileSystem.cs" />
     <Compile Include="UAP\*.cs" />
   </ItemGroup>
 
