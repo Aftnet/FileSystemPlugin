@@ -88,10 +88,6 @@
     <InterfaceDefinition Include="Main.storyboard" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Plugin.FileSystem\Plugin.FileSystem.csproj">
-      <Project>{18FF9418-0AE5-4BA4-A2E9-27CE09E43C91}</Project>
-      <Name>Plugin.FileSystem</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TestApp.Shared\TestApp.Shared.csproj">
       <Project>{94E8259B-D484-426B-9EFD-AB13E6027C64}</Project>
       <Name>TestApp.Shared</Name>

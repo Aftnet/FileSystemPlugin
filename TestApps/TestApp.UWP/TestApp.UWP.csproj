@@ -132,10 +132,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Plugin.FileSystem\Plugin.FileSystem.csproj">
-      <Project>{18ff9418-0ae5-4ba4-a2e9-27ce09e43c91}</Project>
-      <Name>Plugin.FileSystem</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TestApp.Shared\TestApp.Shared.csproj">
       <Project>{94e8259b-d484-426b-9efd-ab13e6027c64}</Project>
       <Name>TestApp.Shared</Name>
