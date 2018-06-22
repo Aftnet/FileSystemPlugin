@@ -11,8 +11,8 @@
     <AssemblyName>TestApp.UWP</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.16299.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.17134.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -128,18 +128,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.0.8</Version>
+      <Version>6.1.5</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Plugin.FileSystem.Abstractions\Plugin.FileSystem.Abstractions.csproj">
-      <Project>{18ff9418-0ae5-4ba4-a2e9-27ce09e43c91}</Project>
-      <Name>Plugin.FileSystem.Abstractions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Plugin.FileSystem.UWP\Plugin.FileSystem.UWP.csproj">
-      <Project>{a25a4b76-5ded-42fd-aa9f-c94203398a23}</Project>
-      <Name>Plugin.FileSystem.UWP</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TestApp.Shared\TestApp.Shared.csproj">
       <Project>{94e8259b-d484-426b-9efd-ab13e6027c64}</Project>
       <Name>TestApp.Shared</Name>

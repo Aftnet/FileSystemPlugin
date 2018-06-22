@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Plugin.FileSystem\Plugin.FileSystem.csproj" />
+    <PackageReference Include="Xam.Plugin.FileSystem" Version="1.0.0" />
   </ItemGroup>
 
 </Project>

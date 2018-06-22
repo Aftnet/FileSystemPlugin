@@ -27,7 +27,7 @@ namespace Plugin.FileSystem
             get
             {
 #if NETSTANDARD1_3
-        throw new NotImplementedException();
+                throw new NotImplementedException();
 #else
                 return fileSystem.Value;
 #endif

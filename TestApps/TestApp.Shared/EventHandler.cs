@@ -1,5 +1,6 @@
 ﻿using Plugin.FileSystem.Abstractions;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace TestApp.Shared
@@ -33,7 +34,7 @@ namespace TestApp.Shared
 
             using (var stream = await file.OpenAsync(System.IO.FileAccess.Read))
             {
-
+                Debug.WriteLine($"Stream length {stream.Length}");
             }
         }
 
