@@ -45,6 +45,7 @@
 
   <ItemGroup>
     <Compile Include="Abstractions\*.cs" />
+    <Compile Include="CrossFileSystem.cs" />
   </ItemGroup>
 
   <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
@@ -58,7 +59,6 @@
   </ItemGroup>
 
   <ItemGroup Condition="$(TargetFramework.StartsWith('uap'))">
-    <Compile Include="Shared\CrossFileSystem.cs" />
     <Compile Include="UAP\*.cs" />
   </ItemGroup>
 
