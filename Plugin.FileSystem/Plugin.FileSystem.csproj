@@ -1,7 +1,7 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras/1.5.4">
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="rmdir %USERPROFILE%\.nuget\packages\xam.plugin.filesystem /Q /S" />
+    <Exec Command="rmdir %USERPROFILE%\.nuget\packages\$(PackageId) /Q /S" />
   </Target>
   
   <PropertyGroup>
