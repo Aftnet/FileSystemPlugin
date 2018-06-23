@@ -18,6 +18,7 @@ dotnet_csproj:
 before_build:
 - cmd: >-
     mkdir .\Plugin.FileSystem\bin\Debug
+    
     nuget restore Plugin.FileSystem_CI.sln
 build:
   project: Plugin.FileSystem_CI.sln
