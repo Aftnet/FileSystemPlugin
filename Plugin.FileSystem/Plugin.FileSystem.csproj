@@ -1,4 +1,4 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras/1.5.4">
+﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.24">
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="rmdir %USERPROFILE%\.nuget\packages\$(PackageId) /Q /S" />
@@ -39,7 +39,7 @@
   </PropertyGroup>
   
   <PropertyGroup Condition="$(TargetFramework.StartsWith('uap'))">
-    <TargetPlatformVersion>10.0.17134.0</TargetPlatformVersion>
+    <TargetPlatformVersion>10.0.17763.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
   </PropertyGroup>
 
