@@ -74,7 +74,7 @@ namespace Plugin.FileSystem
 
         public Task<Stream> OpenAsync(FileAccess access)
         {
-            return Task.Run(() => NativeItem.Open(FileMode.OpenOrCreate, access) as Stream);
+            return Task.Run(() => NativeItem.Open(FileMode.OpenOrCreate, access, FileShare.Read) as Stream);
         }
 
         public override bool Equals(object obj)
