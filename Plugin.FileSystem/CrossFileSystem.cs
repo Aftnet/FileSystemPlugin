@@ -6,7 +6,7 @@ namespace Plugin.FileSystem
 {
     public static class CrossFileSystem
     {
-#if !NETSTANDARD1_3
+#if !NETSTANDARD1_4
         private static Lazy<FileSystem> fileSystem = new Lazy<FileSystem>(LazyThreadSafetyMode.PublicationOnly);
 #endif
 
@@ -14,7 +14,7 @@ namespace Plugin.FileSystem
         {
             get
             {
-#if NETSTANDARD1_3
+#if NETSTANDARD1_4
                 return false;
 #else
                 return true;
@@ -26,7 +26,7 @@ namespace Plugin.FileSystem
         {
             get
             {
-#if NETSTANDARD1_3
+#if NETSTANDARD1_4
                 throw new NotImplementedException();
 #else
                 return fileSystem.Value;
