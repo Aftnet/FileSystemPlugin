@@ -143,7 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Plugin.FileSystem.Test\Plugin.FileSystem.Test.csproj">
-      <Project>{cd7e51ad-a9aa-45a6-bf5d-b129c5fc8c6d}</Project>
+      <Project>{6c8d9ec9-3210-460b-8d19-faabe3db8d0c}</Project>
       <Name>Plugin.FileSystem.Test</Name>
     </ProjectReference>
   </ItemGroup>
