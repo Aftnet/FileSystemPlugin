@@ -141,6 +141,12 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Plugin.FileSystem.Test\Plugin.FileSystem.Test.csproj">
+      <Project>{6c8d9ec9-3210-460b-8d19-faabe3db8d0c}</Project>
+      <Name>Plugin.FileSystem.Test</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
