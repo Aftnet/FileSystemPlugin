@@ -88,6 +88,9 @@
     <InterfaceDefinition Include="Main.storyboard" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Xam.Plugin.FileSystem" Version="0.0.0" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\TestApp.Shared\TestApp.Shared.csproj">
       <Project>{94E8259B-D484-426B-9EFD-AB13E6027C64}</Project>
       <Name>TestApp.Shared</Name>
