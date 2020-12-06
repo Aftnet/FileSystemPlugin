@@ -51,9 +51,13 @@ namespace Plugin.FileSystem
             return Task.FromResult(output);
         }
 
-        public override Task<IFileInfo> PickSaveFileAsync(string defaultExtension)
+        public override Task<IFileInfo> PickSaveFileAsync(string defaultExtension, string suggestedName = null)
         {
             var dialog = new SaveFileDialog();
+            if (!string.IsNullOrEmpty(suggestedName) || string.IsNullOrWhiteSpace(suggestedName))
+            {
+                dialog.FileName = suggestedName;
+            }
             dialog.Filter = $"File | *{defaultExtension}";
             dialog.DefaultExt = dialog.Filter;
 

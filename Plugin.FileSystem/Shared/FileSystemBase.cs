@@ -23,7 +23,7 @@ namespace Plugin.FileSystem
             return Task.FromResult(default(IFileInfo[]));
         }
 
-        public virtual Task<IFileInfo> PickSaveFileAsync(string defaultExtension)
+        public virtual Task<IFileInfo> PickSaveFileAsync(string defaultExtension, string suggestedName = null)
         {
             return Task.FromResult(default(IFileInfo));
         }

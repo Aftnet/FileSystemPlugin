@@ -86,5 +86,9 @@
   <Target Name="MovePackage" AfterTargets="Pack">
     <Move SourceFiles="$(OutputPath)$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(SolutionDir)GeneratedPackages" />
   </Target>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="rmdir /s /q  %25userprofile%25\.nuget\packages\xam.plugin.filesystem\0.0.0" />
+  </Target>
   
 </Project>
