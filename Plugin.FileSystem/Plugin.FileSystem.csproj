@@ -1,7 +1,7 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras/2.1.2">
   
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netcoreapp3.1;uap10.0.19041;net472;Xamarin.iOS1.0;Xamarin.Mac2.0;MonoAndroid90</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netcoreapp3.1;uap10.0;net472;Xamarin.iOS1.0;Xamarin.Mac2.0;MonoAndroid90</TargetFrameworks>
     <AssemblyName>Plugin.FileSystem</AssemblyName>
     <RootNamespace>$(AssemblyName)</RootNamespace>
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
@@ -33,6 +33,11 @@
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
 
+  <PropertyGroup Condition="$(TargetFramework.StartsWith('uap'))">
+    <TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+  </PropertyGroup>
+  
   <PropertyGroup Condition="$(TargetFramework.StartsWith('MonoAndroid'))">
     <AndroidResgenFile Condition="'$(AndroidResgenFile)' == ''">$(IntermediateOutputPath)$(TargetFramework)\Resource.Designer$(_SdkLanguageExtension)</AndroidResgenFile>
     <DesignTimeBuild>False</DesignTimeBuild>
