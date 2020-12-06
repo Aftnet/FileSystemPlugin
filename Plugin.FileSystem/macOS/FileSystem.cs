@@ -43,9 +43,14 @@ namespace Plugin.FileSystem
             return output;
         }
 
-        public override async Task<IFileInfo> PickSaveFileAsync(string defaultExtension)
+        public override async Task<IFileInfo> PickSaveFileAsync(string defaultExtension, string suggestedName = null)
         {
             var panel = NSSavePanel.SavePanel;
+            if (!string.IsNullOrEmpty(suggestedName) || string.IsNullOrWhiteSpace(suggestedName))
+            {
+                panel.NameFieldStringValue = suggestedName;
+            }
+
             panel.AllowedFileTypes = new string[] { defaultExtension.Substring(1) };
             panel.AllowsOtherFileTypes = false;
 

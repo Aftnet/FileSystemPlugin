@@ -76,7 +76,7 @@ namespace TestApp.Shared
 
         public async void SaveFile()
         {
-            var file = await FileSystem.PickSaveFileAsync(".ext");
+            var file = await FileSystem.PickSaveFileAsync(".ext", "File Name");
             if (file == null)
                 return;
 

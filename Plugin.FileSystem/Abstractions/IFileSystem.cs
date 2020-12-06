@@ -18,7 +18,7 @@ namespace Plugin.FileSystem.Abstractions
 
         Task<IFileInfo[]> PickFilesAsync(IEnumerable<string> extensionsFilter = null);
 
-        Task<IFileInfo> PickSaveFileAsync(string defaultExtension);
+        Task<IFileInfo> PickSaveFileAsync(string defaultExtension, string suggestedName = null);
 
         Task<IDirectoryInfo> PickDirectoryAsync();
 

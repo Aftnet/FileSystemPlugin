@@ -48,9 +48,14 @@ namespace Plugin.FileSystem
             return output;
         }
 
-        public async Task<IFileInfo> PickSaveFileAsync(string defaultExtension)
+        public async Task<IFileInfo> PickSaveFileAsync(string defaultExtension, string suggestedName = null)
         {
             var picker = new FileSavePicker();
+            if (!string.IsNullOrEmpty(suggestedName) || string.IsNullOrWhiteSpace(suggestedName))
+            {
+                picker.SuggestedFileName = suggestedName;
+            }
+
             picker.FileTypeChoices.Add("File", new List<string> { defaultExtension });
 
             var file = await picker.PickSaveFileAsync();
