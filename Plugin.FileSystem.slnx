@@ -31,6 +31,18 @@
     <BuildType Solution="AppStore|x64" Project="Debug" />
     <BuildType Solution="AppStore|x86" Project="Debug" />
   </Project>
+  <Project Path="Plugin.FileSystem.App.WinUI/Plugin.FileSystem.App.WinUI.csproj" Id="cabafd69-f13b-461f-86fe-da7007e74388">
+    <BuildType Solution="Ad-Hoc|*" Project="Release" />
+    <BuildType Solution="AppStore|*" Project="Release" />
+    <Platform Solution="*|Any CPU" Project="x64" />
+    <Platform Solution="*|ARM" Project="x64" />
+    <Platform Solution="*|ARM64" Project="ARM64" />
+    <Platform Solution="*|iPhone" Project="x64" />
+    <Platform Solution="*|iPhoneSimulator" Project="x64" />
+    <Platform Solution="*|x64" Project="x64" />
+    <Platform Solution="*|x86" Project="x86" />
+    <Deploy />
+  </Project>
   <Project Path="Plugin.FileSystem.Test.Shared/Plugin.FileSystem.Test.Shared.csproj">
     <BuildType Solution="Ad-Hoc|*" Project="Release" />
     <BuildType Solution="AppStore|*" Project="Release" />

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Plugin.FileSystem.App.WinUI (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Plugin.FileSystem.App.WinUI (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
