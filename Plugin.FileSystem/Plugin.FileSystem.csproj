@@ -2,11 +2,11 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>net10.0-windows10.0.22000.0;net10.0-android;net10.0-ios</TargetFrameworks>
+		<VersionPrefix>2.0</VersionPrefix>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<Authors>Alberto Fustinoni</Authors>
 		<PackageId>Xam.Plugin.FileSystem</PackageId>
-		<PackOnBuild>true</PackOnBuild>
 		<RepositoryUrl>https://github.com/Aftnet/FileSystemPlugin</RepositoryUrl>
 		<PackageIconUrl>https://github.com/Aftnet/FileSystemPlugin/raw/master/Icon.png</PackageIconUrl>
 		<PackageProjectUrl>https://github.com/aftnet/FileSystemPlugin</PackageProjectUrl>
@@ -17,10 +17,15 @@
 		<Description>File System API abstraction</Description>
 		<PackageTags>xamarin, plugin, plugin for xamarin, android, xamarin.forms, ios, file system, storage, UWP</PackageTags>
 		<Copyright>Copyright 2018</Copyright>
-		<NeutralLanguage>en</NeutralLanguage>
-		<LangVersion>default</LangVersion>
-		<EnableDefaultCompileItems>true</EnableDefaultCompileItems>
-		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageIcon>Icon.png</PackageIcon>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Include="..\Icon.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
 
 </Project>

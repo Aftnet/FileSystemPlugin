@@ -1,4 +1,4 @@
-﻿#if NONE
+﻿#if WINDOWS7_0
 
 using Plugin.FileSystem.Abstractions;
 using System;

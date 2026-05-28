@@ -11,9 +11,9 @@ using Windows.Storage.Search;
 
 namespace Plugin.FileSystem
 {
-    public class DirectoryInfo : NativeItemWrapper<StorageFolder>, IDirectoryInfo
+    public class UAPDirectoryInfo : NativeItemWrapper<StorageFolder>, IDirectoryInfo
     {
-        public DirectoryInfo(StorageFolder nativeItem) : base(nativeItem)
+        public UAPDirectoryInfo(StorageFolder nativeItem) : base(nativeItem)
         {
         }
 
@@ -29,13 +29,13 @@ namespace Plugin.FileSystem
         public async Task<IDirectoryInfo> CreateDirectoryAsync(string name)
         {
             var newFolder = await NativeItem.CreateFolderAsync(name);
-            return new DirectoryInfo(newFolder);
+            return new UAPDirectoryInfo(newFolder);
         }
 
         public async Task<IFileInfo> CreateFileAsync(string name)
         {
             var newFile = await NativeItem.CreateFileAsync(name);
-            return new FileInfo(newFile);
+            return new UAPFileInfo(newFile);
         }
 
         public Task DeleteAsync()
@@ -46,7 +46,7 @@ namespace Plugin.FileSystem
         public async Task<IEnumerable<IDirectoryInfo>> EnumerateDirectoriesAsync()
         {
             var folders = await NativeItem.GetFoldersAsync(CommonFolderQuery.DefaultQuery);
-            return folders.Select(d => new DirectoryInfo(d)).ToArray();
+            return folders.Select(d => new UAPDirectoryInfo(d)).ToArray();
         }
 
         public async Task<IDirectoryInfo> GetDirectoryAsync(string name)
@@ -54,7 +54,7 @@ namespace Plugin.FileSystem
             try
             {
                 var folder = await NativeItem.GetFolderAsync(name);
-                return new DirectoryInfo(folder);
+                return new UAPDirectoryInfo(folder);
             }
             catch (FileNotFoundException)
             {
@@ -65,7 +65,7 @@ namespace Plugin.FileSystem
         public async Task<IEnumerable<IFileInfo>> EnumerateFilesAsync()
         {
             var files = await NativeItem.GetFilesAsync(CommonFileQuery.DefaultQuery);
-            return files.Select(d => new FileInfo(d)).ToArray();
+            return files.Select(d => new UAPFileInfo(d)).ToArray();
         }
 
         public async Task<IFileInfo> GetFileAsync(string name)
@@ -73,7 +73,7 @@ namespace Plugin.FileSystem
             try
             {
                 var file = await NativeItem.GetFileAsync(name);
-                return new FileInfo(file);
+                return new UAPFileInfo(file);
             }
             catch (FileNotFoundException)
             {
@@ -98,7 +98,7 @@ namespace Plugin.FileSystem
         public async Task<IDirectoryInfo> GetParentAsync()
         {
             var parent = await NativeItem.GetParentAsync();
-            return new DirectoryInfo(parent);
+            return new UAPDirectoryInfo(parent);
         }
 
         public override bool Equals(object obj)

@@ -8,9 +8,9 @@ using Windows.Storage;
 
 namespace Plugin.FileSystem
 {
-    public class FileInfo : NativeItemWrapper<StorageFile>, IFileInfo
+    public class UAPFileInfo : NativeItemWrapper<StorageFile>, IFileInfo
     {
-        public FileInfo(StorageFile nativeItem) : base(nativeItem)
+        public UAPFileInfo(StorageFile nativeItem) : base(nativeItem)
         {
         }
 
@@ -32,7 +32,7 @@ namespace Plugin.FileSystem
         {
             var nativeFolder = (destFolder as NativeItemWrapper<StorageFolder>).NativeItem;
             var newFile = await NativeItem.CopyAsync(nativeFolder, destFileName, overwrite ? NameCollisionOption.ReplaceExisting : NameCollisionOption.FailIfExists);
-            return new FileInfo(newFile);
+            return new UAPFileInfo(newFile);
         }
 
         public Task DeleteAsync()
@@ -55,7 +55,7 @@ namespace Plugin.FileSystem
         public async Task<IDirectoryInfo> GetParentAsync()
         {
             var parent = await NativeItem.GetParentAsync();
-            return new DirectoryInfo(parent);
+            return new UAPDirectoryInfo(parent);
         }
 
         public Task MoveToAsync(IDirectoryInfo destFolder, bool overwrite = true)
