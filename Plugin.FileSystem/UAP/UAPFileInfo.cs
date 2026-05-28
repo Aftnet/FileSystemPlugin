@@ -30,8 +30,13 @@ namespace Plugin.FileSystem
 
         public async Task<IFileInfo> CopyToAsync(IDirectoryInfo destFolder, string destFileName, bool overwrite = true)
         {
-            var nativeFolder = (destFolder as NativeItemWrapper<StorageFolder>).NativeItem;
-            var newFile = await NativeItem.CopyAsync(nativeFolder, destFileName, overwrite ? NameCollisionOption.ReplaceExisting : NameCollisionOption.FailIfExists);
+            var dstFolder = destFolder as NativeItemWrapper<StorageFolder>;
+            if (dstFolder == null)
+            {
+                throw new ArgumentException("Incompatible destination. Do not mix Windows.Storage and System.IO items");
+            }
+
+            var newFile = await NativeItem.CopyAsync(dstFolder.NativeItem, destFileName, overwrite ? NameCollisionOption.ReplaceExisting : NameCollisionOption.FailIfExists);
             return new UAPFileInfo(newFile);
         }
 
@@ -52,10 +57,10 @@ namespace Plugin.FileSystem
             return properties.Size;
         }
 
-        public async Task<IDirectoryInfo> GetParentAsync()
+        public async Task<IDirectoryInfo?> GetParentAsync()
         {
             var parent = await NativeItem.GetParentAsync();
-            return new UAPDirectoryInfo(parent);
+            return parent != null ? new UAPDirectoryInfo(parent) : null;
         }
 
         public Task MoveToAsync(IDirectoryInfo destFolder, bool overwrite = true)
@@ -65,8 +70,13 @@ namespace Plugin.FileSystem
 
         public Task MoveToAsync(IDirectoryInfo destFolder, string destFileName, bool overwrite = true)
         {
-            var nativeFolder = (destFolder as NativeItemWrapper<StorageFolder>).NativeItem;
-            return NativeItem.MoveAsync(nativeFolder, destFileName, overwrite ? NameCollisionOption.ReplaceExisting : NameCollisionOption.FailIfExists).AsTask();
+            var dstFolder = destFolder as NativeItemWrapper<StorageFolder>;
+            if (dstFolder == null)
+            {
+                throw new ArgumentException("Incompatible destination. Do not mix Windows.Storage and System.IO items");
+            }
+
+            return NativeItem.MoveAsync(dstFolder.NativeItem, destFileName, overwrite ? NameCollisionOption.ReplaceExisting : NameCollisionOption.FailIfExists).AsTask();
         }
 
         public async Task<Stream> OpenAsync(FileAccess access)
@@ -75,10 +85,10 @@ namespace Plugin.FileSystem
             return stream.AsStream();
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             var other = obj as FileInfo;
-            if (obj == null)
+            if (other == null)
                 return false;
 
             return FullName == other.FullName;

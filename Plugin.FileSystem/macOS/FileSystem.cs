@@ -21,7 +21,7 @@ namespace Plugin.FileSystem
 
         public override IDirectoryInfo InstallLocation => new DirectoryInfo(new System.IO.DirectoryInfo(NSBundle.MainBundle.BundlePath));
 
-        public override async Task<IFileInfo> PickFileAsync(IEnumerable<string> extensionsFilter = null)
+        public override async Task<IFileInfo?> PickFileAsync(IEnumerable<string>? extensionsFilter = null)
         {
             var output = default(IFileInfo);
 
@@ -35,7 +35,7 @@ namespace Plugin.FileSystem
             return output;
         }
 
-        public override async Task<IFileInfo[]> PickFilesAsync(IEnumerable<string> extensionsFilter = null)
+        public override async Task<IFileInfo[]?> PickFilesAsync(IEnumerable<string>? extensionsFilter = null)
         {
             var output = default(IFileInfo[]);
 
@@ -45,12 +45,12 @@ namespace Plugin.FileSystem
             return output;
         }
 
-        public override async Task<IFileInfo> PickSaveFileAsync(string defaultExtension, string suggestedName = null)
+        public override async Task<IFileInfo?> PickSaveFileAsync(string defaultExtension, string? suggestedName = null)
         {
             var panel = NSSavePanel.SavePanel;
             if (!string.IsNullOrEmpty(suggestedName) || string.IsNullOrWhiteSpace(suggestedName))
             {
-                panel.NameFieldStringValue = suggestedName;
+                panel.NameFieldStringValue = suggestedName!;
             }
 
             panel.AllowedFileTypes = new string[] { defaultExtension.Substring(1) };
@@ -73,7 +73,7 @@ namespace Plugin.FileSystem
             return new FileInfo(file);
         }
 
-        public override async Task<IDirectoryInfo> PickDirectoryAsync()
+        public override async Task<IDirectoryInfo?> PickDirectoryAsync()
         {
             var output = default(IDirectoryInfo);
 
@@ -94,7 +94,7 @@ namespace Plugin.FileSystem
             return new DirectoryInfo(folder);
         }
 
-        private static async Task<string[]> GetPathsFromOpenFileDialog(bool allowMultipleSelection, bool openFolder, IEnumerable<string> extensionsFilter)
+        private static async Task<string[]?> GetPathsFromOpenFileDialog(bool allowMultipleSelection, bool openFolder, IEnumerable<string> extensionsFilter)
         {
             var panel = NSOpenPanel.OpenPanel;
             panel.AllowsMultipleSelection = allowMultipleSelection;

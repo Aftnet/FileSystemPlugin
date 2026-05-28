@@ -1,7 +1,4 @@
 ﻿using Plugin.FileSystem.Abstractions;
-using System;
-using System.IO;
-using System.Threading.Tasks;
 
 namespace Plugin.FileSystem
 {
@@ -17,7 +14,7 @@ namespace Plugin.FileSystem
 
         public Task RenameAsync(string name)
         {
-            var newPath = Path.Combine(NativeItem.Directory.FullName, name);
+            var newPath = Path.Combine(NativeItem.Directory!.FullName, name);
             return Task.Run(() => NativeItem.MoveTo(newPath));
         }
 
@@ -28,7 +25,6 @@ namespace Plugin.FileSystem
 
         public async Task<IFileInfo> CopyToAsync(IDirectoryInfo destFolder, string destFileName, bool overwrite = true)
         {
-            var nativeFolder = (destFolder as NativeItemWrapper<System.IO.DirectoryInfo>).NativeItem;
             var newPath = Path.Combine(destFolder.FullName, destFileName);
             var newFile = await Task.Run(() => NativeItem.CopyTo(newPath, overwrite));
             return new FileInfo(newFile);
@@ -52,11 +48,11 @@ namespace Plugin.FileSystem
             return Task.Run(() => (ulong)NativeItem.Length);
         }
 
-        public Task<IDirectoryInfo> GetParentAsync()
+        public Task<IDirectoryInfo?> GetParentAsync()
         {
             return Task.Run(() =>
             {
-                return new DirectoryInfo(NativeItem.Directory) as IDirectoryInfo;
+                return NativeItem.Directory != null ? new DirectoryInfo(NativeItem.Directory) as IDirectoryInfo : null;
             });
         }
 
@@ -67,7 +63,6 @@ namespace Plugin.FileSystem
 
         public Task MoveToAsync(IDirectoryInfo destFolder, string destFileName, bool overwrite = true)
         {
-            var nativeFolder = (destFolder as NativeItemWrapper<System.IO.DirectoryInfo>).NativeItem;
             var newPath = Path.Combine(destFolder.FullName, destFileName);
             return Task.Run(() => NativeItem.MoveTo(newPath));
         }
@@ -77,10 +72,10 @@ namespace Plugin.FileSystem
             return Task.Run(() => NativeItem.Open(FileMode.OpenOrCreate, access, FileShare.Read) as Stream);
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             var other = obj as FileInfo;
-            if (obj == null)
+            if (other == null)
                 return false;
 
             return FullName == other.FullName;

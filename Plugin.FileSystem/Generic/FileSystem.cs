@@ -1,11 +1,6 @@
-﻿#if WINDOWS7_0
+﻿#if !ANDROID && !IOS && !MACOS && !WINDOWS10_0_17763_0_OR_GREATER
 
 using Plugin.FileSystem.Abstractions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Plugin.FileSystem
 {
@@ -19,71 +14,26 @@ namespace Plugin.FileSystem
 
         public override IDirectoryInfo InstallLocation => new DirectoryInfo(new System.IO.DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory));
 
-        public override Task<IFileInfo> PickFileAsync(IEnumerable<string> extensionsFilter = null)
+        public override Task<IFileInfo?> PickFileAsync(IEnumerable<string>? extensionsFilter = null)
         {
-            var dialog = new OpenFileDialog();
-            dialog.Filter = GenerateFilterString(extensionsFilter);
-            dialog.Multiselect = false;
-            dialog.CheckFileExists = true;
-            dialog.CheckPathExists = true;
-            var result = dialog.ShowDialog();
-            if (result != DialogResult.OK)
-            {
-                return Task.FromResult(default(IFileInfo));
-            }
-
-            IFileInfo output = new FileInfo(new System.IO.FileInfo(dialog.FileName));
-            return Task.FromResult(output);
+            
+            return Task.FromResult(default(IFileInfo));
         }
 
-        public override Task<IFileInfo[]> PickFilesAsync(IEnumerable<string> extensionsFilter = null)
+        public override Task<IFileInfo[]?> PickFilesAsync(IEnumerable<string>? extensionsFilter = null)
         {
-            var dialog = new OpenFileDialog();
-            dialog.Filter = GenerateFilterString(extensionsFilter);
-            dialog.Multiselect = true;
-            dialog.CheckFileExists = true;
-            dialog.CheckPathExists = true;
-            var result = dialog.ShowDialog();
-            if (result != DialogResult.OK)
-            {
-                return Task.FromResult(default(IFileInfo[]));
-            }
-
-            var output = dialog.FileNames.Select(d => new FileInfo(new System.IO.FileInfo(d)) as IFileInfo).ToArray();
-            return Task.FromResult(output);
+            
+            return Task.FromResult(default(IFileInfo[]));
         }
 
-        public override Task<IFileInfo> PickSaveFileAsync(string defaultExtension, string suggestedName = null)
+        public override Task<IFileInfo?> PickSaveFileAsync(string defaultExtension, string? suggestedName = null)
         {
-            var dialog = new SaveFileDialog();
-            if (!string.IsNullOrEmpty(suggestedName) || string.IsNullOrWhiteSpace(suggestedName))
-            {
-                dialog.FileName = suggestedName;
-            }
-            dialog.Filter = $"File | *{defaultExtension}";
-            dialog.DefaultExt = dialog.Filter;
-
-            var result = dialog.ShowDialog();
-            if (result != DialogResult.OK)
-            {
-                return Task.FromResult(default(IFileInfo));
-            }
-
-            IFileInfo output = new FileInfo(new System.IO.FileInfo(dialog.FileName));
-            return Task.FromResult(output);
+            return Task.FromResult(default(IFileInfo));
         }
 
-        public override Task<IDirectoryInfo> PickDirectoryAsync()
+        public override Task<IDirectoryInfo?> PickDirectoryAsync()
         {
-            var dialog = new FolderBrowserDialog();
-            dialog.ShowNewFolderButton = true;
-            var result = dialog.ShowDialog();
-            if (result != DialogResult.OK)
-            {
-                return Task.FromResult(default(IDirectoryInfo));
-            }
-
-            return GetDirectoryFromPathAsync(dialog.SelectedPath);
+            return Task.FromResult(default(IDirectoryInfo));
         }
 
         private IDirectoryInfo GetSpecialFolder(Environment.SpecialFolder specialFolder)

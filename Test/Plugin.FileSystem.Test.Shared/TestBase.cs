@@ -172,7 +172,7 @@ namespace Plugin.FileSystem.Test
                 Assert.NotNull(stream);
 
                 var comparison = new byte[data.Length];
-                await stream.ReadAsync(comparison, 0, comparison.Length);
+                await stream.ReadExactlyAsync(comparison);
                 Assert.Equal(data, comparison);
             }
         }

@@ -49,7 +49,7 @@ namespace Plugin.FileSystem
             return folders.Select(d => new UAPDirectoryInfo(d)).ToArray();
         }
 
-        public async Task<IDirectoryInfo> GetDirectoryAsync(string name)
+        public async Task<IDirectoryInfo?> GetDirectoryAsync(string name)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace Plugin.FileSystem
             return files.Select(d => new UAPFileInfo(d)).ToArray();
         }
 
-        public async Task<IFileInfo> GetFileAsync(string name)
+        public async Task<IFileInfo?> GetFileAsync(string name)
         {
             try
             {
@@ -95,16 +95,16 @@ namespace Plugin.FileSystem
             return properties.DateModified;
         }
 
-        public async Task<IDirectoryInfo> GetParentAsync()
+        public async Task<IDirectoryInfo?> GetParentAsync()
         {
             var parent = await NativeItem.GetParentAsync();
             return new UAPDirectoryInfo(parent);
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             var other = obj as DirectoryInfo;
-            if (obj == null)
+            if (other == null)
                 return false;
 
             return FullName == other.FullName;

@@ -1,6 +1,4 @@
-using Plugin.FileSystem.Test;
-
-namespace Plugin.FileSystem.NetCore.Test
+﻿namespace Plugin.FileSystem.Test
 {
     public class Test : TestBase
     {
