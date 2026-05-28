@@ -1,4 +1,6 @@
-﻿using Plugin.FileSystem.Abstractions;
+﻿#if NONE
+
+using Plugin.FileSystem.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -104,3 +106,5 @@ namespace Plugin.FileSystem
         }
     }
 }
+
+#endif

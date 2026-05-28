@@ -1,4 +1,6 @@
-﻿using Plugin.FileSystem.Abstractions;
+﻿#if ANDROID
+
+using Plugin.FileSystem.Abstractions;
 
 namespace Plugin.FileSystem
 {
@@ -11,3 +13,5 @@ namespace Plugin.FileSystem
         public override IDirectoryInfo InstallLocation => new DirectoryInfo(new System.IO.DirectoryInfo(Android.App.Application.Context.ApplicationInfo.DataDir));
     }
 }
+
+#endif

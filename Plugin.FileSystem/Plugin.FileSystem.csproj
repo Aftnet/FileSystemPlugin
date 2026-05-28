@@ -1,94 +1,26 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras/2.1.2">
-  
-  <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netcoreapp3.1;uap10.0;net472;Xamarin.iOS1.0;Xamarin.Mac2.0;MonoAndroid90</TargetFrameworks>
-    <AssemblyName>Plugin.FileSystem</AssemblyName>
-    <RootNamespace>$(AssemblyName)</RootNamespace>
-    <Product>$(AssemblyName) ($(TargetFramework))</Product>
-    <Version>0.0.0</Version>
-    <Authors>Alberto Fustinoni</Authors>
-    <PackageId>Xam.Plugin.FileSystem</PackageId>
-    <PackOnBuild>true</PackOnBuild>
-    <RepositoryUrl>https://github.com/Aftnet/FileSystemPlugin</RepositoryUrl>
-    <PackageIconUrl>https://github.com/Aftnet/FileSystemPlugin/raw/master/Icon.png</PackageIconUrl>
-    <PackageProjectUrl>https://github.com/aftnet/FileSystemPlugin</PackageProjectUrl>
-    <PackageLicense>https://github.com/aftnet/FileSystemPlugin/blob/master/License.txt</PackageLicense>
-    <Owners>Alberto Fustinoni</Owners>
-    <Title>File system plugin for Xamarin and Windows</Title>
-    <Summary>File System API abstraction</Summary>
-    <Description>File System API abstraction</Description>
-    <PackageTags>xamarin, plugin, plugin for xamarin, android, xamarin.forms, ios, file system, storage, UWP</PackageTags>
-    <Copyright>Copyright 2018</Copyright>  
-    <NeutralLanguage>en</NeutralLanguage>
-    <LangVersion>default</LangVersion>
-    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-  </PropertyGroup>
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
-    <DebugType>full</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <DebugType>pdbonly</DebugType>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>net10.0-windows10.0.22000.0;net10.0-android;net10.0-ios</TargetFrameworks>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Authors>Alberto Fustinoni</Authors>
+		<PackageId>Xam.Plugin.FileSystem</PackageId>
+		<PackOnBuild>true</PackOnBuild>
+		<RepositoryUrl>https://github.com/Aftnet/FileSystemPlugin</RepositoryUrl>
+		<PackageIconUrl>https://github.com/Aftnet/FileSystemPlugin/raw/master/Icon.png</PackageIconUrl>
+		<PackageProjectUrl>https://github.com/aftnet/FileSystemPlugin</PackageProjectUrl>
+		<PackageLicense>https://github.com/aftnet/FileSystemPlugin/blob/master/License.txt</PackageLicense>
+		<Owners>Alberto Fustinoni</Owners>
+		<Title>File system plugin for Xamarin and Windows</Title>
+		<Summary>File System API abstraction</Summary>
+		<Description>File System API abstraction</Description>
+		<PackageTags>xamarin, plugin, plugin for xamarin, android, xamarin.forms, ios, file system, storage, UWP</PackageTags>
+		<Copyright>Copyright 2018</Copyright>
+		<NeutralLanguage>en</NeutralLanguage>
+		<LangVersion>default</LangVersion>
+		<EnableDefaultCompileItems>true</EnableDefaultCompileItems>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="$(TargetFramework.StartsWith('uap'))">
-    <TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
-  </PropertyGroup>
-  
-  <PropertyGroup Condition="$(TargetFramework.StartsWith('MonoAndroid'))">
-    <AndroidResgenFile Condition="'$(AndroidResgenFile)' == ''">$(IntermediateOutputPath)$(TargetFramework)\Resource.Designer$(_SdkLanguageExtension)</AndroidResgenFile>
-    <DesignTimeBuild>False</DesignTimeBuild>
-    <XamarinAndroidSupportSkipVerifyVersions>True</XamarinAndroidSupportSkipVerifyVersions>
-  </PropertyGroup>
-  
-  <ItemGroup>
-    <Compile Include="Abstractions\*.cs" />
-    <Compile Include="CrossFileSystem.cs" />
-  </ItemGroup>
-
-  <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Windows.Forms" />
-    <Compile Include="Shared\*.cs" />
-    <Compile Include="Net46\*.cs" />
-  </ItemGroup>
-
-  <ItemGroup Condition="$(TargetFramework.StartsWith('uap'))">
-    <Compile Include="UAP\*.cs" />
-  </ItemGroup>
-
-  <ItemGroup Condition="$(TargetFramework.StartsWith('MonoAndroid'))">
-    <Compile Include="Shared\*.cs" />
-    <Compile Include="Android\*.cs" />
-  </ItemGroup>
-
-  <ItemGroup Condition="$(TargetFramework.StartsWith('Xamarin.iOS'))">
-    <Compile Include="Shared\*.cs" />
-    <Compile Include="iOS\*.cs" />
-  </ItemGroup>
-
-  <ItemGroup Condition="$(TargetFramework.StartsWith('Xamarin.Mac'))">
-    <Compile Include="Shared\*.cs" />
-    <Compile Include="macOS\*.cs" />
-  </ItemGroup>
-
-  <ItemGroup Condition="$(TargetFramework.StartsWith('netcoreapp'))">
-    <Compile Include="Shared\*.cs" />
-    <Compile Include="NetCore\*.cs" />
-  </ItemGroup>
-
-  <Target Name="MovePackage" AfterTargets="Pack">
-    <Move SourceFiles="$(OutputPath)$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(SolutionDir)GeneratedPackages" />
-  </Target>
-
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="rmdir /s /q  %25userprofile%25\.nuget\packages\xam.plugin.filesystem\0.0.0" />
-  </Target>
-  
 </Project>

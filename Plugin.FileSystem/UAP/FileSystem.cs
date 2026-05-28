@@ -1,4 +1,6 @@
-﻿using Plugin.FileSystem.Abstractions;
+﻿#if WINDOWS10_0_17763_0_OR_GREATER
+
+using Plugin.FileSystem.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -141,3 +143,5 @@ namespace Plugin.FileSystem
         }
     }
 }
+
+#endif

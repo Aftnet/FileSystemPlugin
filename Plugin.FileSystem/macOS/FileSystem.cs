@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if MACOS
+
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Foundation;
@@ -116,3 +118,5 @@ namespace Plugin.FileSystem
         }
     }
 }
+
+#endif

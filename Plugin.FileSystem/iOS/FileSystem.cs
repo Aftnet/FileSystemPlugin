@@ -1,4 +1,6 @@
-﻿using Foundation;
+﻿#if IOS
+
+using Foundation;
 using Plugin.FileSystem.Abstractions;
 using System;
 
@@ -20,3 +22,5 @@ namespace Plugin.FileSystem
         }
     }
 }
+
+#endif
