@@ -15,16 +15,6 @@
   <Folder Name="/Solution Items/">
     <File Path="readme.md" />
   </Folder>
-  <Folder Name="/Test/">
-    <Project Path="Test/Plugin.FileSystem.Test.Shared/Plugin.FileSystem.Test.Shared.csproj">
-      <BuildType Solution="Ad-Hoc|*" Project="Release" />
-      <BuildType Solution="AppStore|*" Project="Release" />
-    </Project>
-    <Project Path="Test/Plugin.FileSystem.Test/Plugin.FileSystem.Test.csproj" Id="a78d8c0d-8b02-44d7-9977-38298afc4541">
-      <BuildType Solution="Ad-Hoc|*" Project="Release" />
-      <BuildType Solution="AppStore|*" Project="Release" />
-    </Project>
-  </Folder>
   <Project Path="Plugin.FileSystem/Plugin.FileSystem.csproj">
     <BuildType Solution="Ad-Hoc|Any CPU" Project="Debug" />
     <BuildType Solution="Ad-Hoc|ARM" Project="Debug" />
@@ -40,5 +30,13 @@
     <BuildType Solution="AppStore|iPhoneSimulator" Project="Debug" />
     <BuildType Solution="AppStore|x64" Project="Debug" />
     <BuildType Solution="AppStore|x86" Project="Debug" />
+  </Project>
+  <Project Path="Plugin.FileSystem.Test.Shared/Plugin.FileSystem.Test.Shared.csproj">
+    <BuildType Solution="Ad-Hoc|*" Project="Release" />
+    <BuildType Solution="AppStore|*" Project="Release" />
+  </Project>
+  <Project Path="Plugin.FileSystem.Test/Plugin.FileSystem.Test.csproj">
+    <BuildType Solution="Ad-Hoc|*" Project="Release" />
+    <BuildType Solution="AppStore|*" Project="Release" />
   </Project>
 </Solution>

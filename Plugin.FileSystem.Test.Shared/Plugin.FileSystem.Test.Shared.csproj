@@ -10,7 +10,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\..\Plugin.FileSystem\Plugin.FileSystem.csproj" />
+    <ProjectReference Include="..\Plugin.FileSystem\Plugin.FileSystem.csproj" />
   </ItemGroup>
 
 </Project>
