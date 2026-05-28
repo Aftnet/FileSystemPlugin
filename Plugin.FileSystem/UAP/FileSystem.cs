@@ -31,18 +31,28 @@ namespace Plugin.FileSystem
 
         public IDirectoryInfo InstallLocation => new UAPDirectoryInfo(Package.Current.InstalledLocation);
 
-        public async Task<IFileInfo> PickFileAsync(IEnumerable<string> extensionsFilter = null)
+        public async Task<IFileInfo?> PickFileAsync(IEnumerable<string>? extensionsFilter = null)
         {
             var picker = new FileOpenPicker();
+            if (extensionsFilter == null)
+            {
+                extensionsFilter = Enumerable.Empty<string>();
+            }
+
             GenerateExtensionFilterForPicker(picker.FileTypeFilter, extensionsFilter);
 
             var file = await picker.PickSingleFileAsync();
             return file != null ? new UAPFileInfo(file) : null;
         }
 
-        public async Task<IFileInfo[]> PickFilesAsync(IEnumerable<string> extensionsFilter = null)
+        public async Task<IFileInfo[]?> PickFilesAsync(IEnumerable<string>? extensionsFilter = null)
         {
             var picker = new FileOpenPicker();
+            if (extensionsFilter == null)
+            {
+                extensionsFilter = Enumerable.Empty<string>();
+            }
+
             GenerateExtensionFilterForPicker(picker.FileTypeFilter, extensionsFilter);
 
             var files = await picker.PickMultipleFilesAsync();
@@ -50,7 +60,7 @@ namespace Plugin.FileSystem
             return output;
         }
 
-        public async Task<IFileInfo> PickSaveFileAsync(string defaultExtension, string suggestedName = null)
+        public async Task<IFileInfo?> PickSaveFileAsync(string defaultExtension, string? suggestedName = null)
         {
             var picker = new FileSavePicker();
             if (!string.IsNullOrEmpty(suggestedName) || string.IsNullOrWhiteSpace(suggestedName))
@@ -65,7 +75,7 @@ namespace Plugin.FileSystem
         }
 
 
-        public async Task<IDirectoryInfo> PickDirectoryAsync()
+        public async Task<IDirectoryInfo?> PickDirectoryAsync()
         {
             var picker = new FolderPicker();
             picker.FileTypeFilter.Add(DefaultExtensionFilter);
@@ -81,7 +91,7 @@ namespace Plugin.FileSystem
             return new UAPDirectoryInfo(folder);
         }
 
-        public async Task<IFileInfo> GetFileFromPathAsync(string path)
+        public async Task<IFileInfo?> GetFileFromPathAsync(string path)
         {
             if (string.IsNullOrEmpty(path))
             {
@@ -101,7 +111,7 @@ namespace Plugin.FileSystem
             return new UAPFileInfo(storageFile);
         }
 
-        public async Task<IDirectoryInfo> GetDirectoryFromPathAsync(string path)
+        public async Task<IDirectoryInfo?> GetDirectoryFromPathAsync(string path)
         {
             if (string.IsNullOrEmpty(path))
             {

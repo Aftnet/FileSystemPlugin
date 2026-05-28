@@ -25,6 +25,11 @@ namespace Plugin.FileSystem
         {
             var output = default(IFileInfo);
 
+            if (extensionsFilter == null)
+            {
+                extensionsFilter = Enumerable.Empty<string>();
+            }
+
             var paths = await GetPathsFromOpenFileDialog(false, false, extensionsFilter);
             var path = paths?.FirstOrDefault();
             if (path != null)
@@ -38,6 +43,11 @@ namespace Plugin.FileSystem
         public override async Task<IFileInfo[]?> PickFilesAsync(IEnumerable<string>? extensionsFilter = null)
         {
             var output = default(IFileInfo[]);
+
+            if (extensionsFilter == null)
+            {
+                extensionsFilter = Enumerable.Empty<string>();
+            }
 
             var paths = await GetPathsFromOpenFileDialog(true, false, extensionsFilter);
             output = paths?.Select(d => new FileInfo(new System.IO.FileInfo(d))).ToArray(); 
