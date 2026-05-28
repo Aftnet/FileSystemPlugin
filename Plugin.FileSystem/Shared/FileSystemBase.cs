@@ -2,7 +2,7 @@
 
 namespace Plugin.FileSystem
 {
-    internal abstract class FileSystemBase : IFileSystem
+    public abstract class FileSystemBase : IFileSystem
     {
         public abstract IDirectoryInfo LocalStorage { get; }
 

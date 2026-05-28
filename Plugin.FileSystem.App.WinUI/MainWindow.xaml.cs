@@ -24,11 +24,12 @@ namespace Plugin.FileSystem.App.WinUI
     /// </summary>
     public sealed partial class MainWindow : Window
     {
-        readonly IFileSystem fs = FileSystem.CrossFileSystem.Current;
+        readonly IFileSystem fs;
 
         public MainWindow()
         {
             InitializeComponent();
+            fs = new FileSystem(this);
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)

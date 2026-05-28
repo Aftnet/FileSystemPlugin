@@ -10,14 +10,19 @@ using Windows.ApplicationModel;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.Storage.Pickers;
+using Windows.Storage.Pickers.Provider;
+using WinRT;
+using WinRT.Interop;
 
 namespace Plugin.FileSystem
 {
     /// <summary>
     /// Implementation of <see cref="IFileSystem"/> over WinRT Storage APIs
     /// </summary>
-    internal class FileSystem : IFileSystem
+    public class FileSystem : IFileSystem
     {
+        private readonly nint WindowHandle;
+
         private const uint FutureAccessListMaxEntries = 10;
         private uint FutureAccessListCounter = 0;
 
@@ -31,9 +36,16 @@ namespace Plugin.FileSystem
 
         public IDirectoryInfo InstallLocation => new UAPDirectoryInfo(Package.Current.InstalledLocation);
 
+        public FileSystem(object appWindow)
+        {
+            WindowHandle = WindowNative.GetWindowHandle(appWindow);
+        }
+
         public async Task<IFileInfo?> PickFileAsync(IEnumerable<string>? extensionsFilter = null)
         {
             var picker = new FileOpenPicker();
+            InitializeWithWindow.Initialize(picker, WindowHandle);
+
             if (extensionsFilter == null)
             {
                 extensionsFilter = Enumerable.Empty<string>();
@@ -48,6 +60,8 @@ namespace Plugin.FileSystem
         public async Task<IFileInfo[]?> PickFilesAsync(IEnumerable<string>? extensionsFilter = null)
         {
             var picker = new FileOpenPicker();
+            InitializeWithWindow.Initialize(picker, WindowHandle);
+
             if (extensionsFilter == null)
             {
                 extensionsFilter = Enumerable.Empty<string>();
@@ -63,6 +77,8 @@ namespace Plugin.FileSystem
         public async Task<IFileInfo?> PickSaveFileAsync(string defaultExtension, string? suggestedName = null)
         {
             var picker = new FileSavePicker();
+            InitializeWithWindow.Initialize(picker, WindowHandle);
+
             if (!string.IsNullOrEmpty(suggestedName) || string.IsNullOrWhiteSpace(suggestedName))
             {
                 picker.SuggestedFileName = suggestedName;
@@ -78,6 +94,8 @@ namespace Plugin.FileSystem
         public async Task<IDirectoryInfo?> PickDirectoryAsync()
         {
             var picker = new FolderPicker();
+            InitializeWithWindow.Initialize(picker, WindowHandle);
+
             picker.FileTypeFilter.Add(DefaultExtensionFilter);
 
             var folder = await picker.PickSingleFolderAsync();

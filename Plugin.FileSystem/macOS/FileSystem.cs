@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace Plugin.FileSystem
 {
-    internal class FileSystem : FileSystemBase
+    public class FileSystem : FileSystemBase
     {
         private const int UIThreadRecoveryTimeMs = 100;
         private static readonly nint OkResponseCode = 1;

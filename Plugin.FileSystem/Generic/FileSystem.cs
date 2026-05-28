@@ -4,7 +4,7 @@ using Plugin.FileSystem.Abstractions;
 
 namespace Plugin.FileSystem
 {
-    internal class FileSystem : FileSystemBase
+    public class FileSystem : FileSystemBase
     {
         private const string DefaultFilter = "*.*";
 

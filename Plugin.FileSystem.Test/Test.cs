@@ -2,7 +2,7 @@
 {
     public class Test : TestBase
     {
-        public Test() : base(CrossFileSystem.Current)
+        public Test() : base(new FileSystem())
         {
         }
     }
