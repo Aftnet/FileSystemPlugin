@@ -1,4 +1,6 @@
-﻿using Plugin.FileSystem.Abstractions;
+﻿#if WINDOWS10_0_17763_0_OR_GREATER
+
+using Plugin.FileSystem.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,14 +10,19 @@ using Windows.ApplicationModel;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.Storage.Pickers;
+using Windows.Storage.Pickers.Provider;
+using WinRT;
+using WinRT.Interop;
 
 namespace Plugin.FileSystem
 {
     /// <summary>
     /// Implementation of <see cref="IFileSystem"/> over WinRT Storage APIs
     /// </summary>
-    internal class FileSystem : IFileSystem
+    public class FileSystem : IFileSystem
     {
+        private readonly nint WindowHandle;
+
         private const uint FutureAccessListMaxEntries = 10;
         private uint FutureAccessListCounter = 0;
 
@@ -23,34 +30,55 @@ namespace Plugin.FileSystem
 
         private readonly ApplicationData ApplicationData = ApplicationData.Current;
 
-        public IDirectoryInfo LocalStorage => new DirectoryInfo(ApplicationData.LocalFolder);
+        public IDirectoryInfo LocalStorage => new UAPDirectoryInfo(ApplicationData.LocalFolder);
 
-        public IDirectoryInfo RoamingStorage => new DirectoryInfo(ApplicationData.RoamingFolder);
+        public IDirectoryInfo RoamingStorage => new UAPDirectoryInfo(ApplicationData.RoamingFolder);
 
-        public IDirectoryInfo InstallLocation => new DirectoryInfo(Package.Current.InstalledLocation);
+        public IDirectoryInfo InstallLocation => new UAPDirectoryInfo(Package.Current.InstalledLocation);
 
-        public async Task<IFileInfo> PickFileAsync(IEnumerable<string> extensionsFilter = null)
+        public FileSystem(object appWindow)
+        {
+            WindowHandle = WindowNative.GetWindowHandle(appWindow);
+        }
+
+        public async Task<IFileInfo?> PickFileAsync(IEnumerable<string>? extensionsFilter = null)
         {
             var picker = new FileOpenPicker();
+            InitializeWithWindow.Initialize(picker, WindowHandle);
+
+            if (extensionsFilter == null)
+            {
+                extensionsFilter = Enumerable.Empty<string>();
+            }
+
             GenerateExtensionFilterForPicker(picker.FileTypeFilter, extensionsFilter);
 
             var file = await picker.PickSingleFileAsync();
-            return file != null ? new FileInfo(file) : null;
+            return file != null ? new UAPFileInfo(file) : null;
         }
 
-        public async Task<IFileInfo[]> PickFilesAsync(IEnumerable<string> extensionsFilter = null)
+        public async Task<IFileInfo[]?> PickFilesAsync(IEnumerable<string>? extensionsFilter = null)
         {
             var picker = new FileOpenPicker();
+            InitializeWithWindow.Initialize(picker, WindowHandle);
+
+            if (extensionsFilter == null)
+            {
+                extensionsFilter = Enumerable.Empty<string>();
+            }
+
             GenerateExtensionFilterForPicker(picker.FileTypeFilter, extensionsFilter);
 
             var files = await picker.PickMultipleFilesAsync();
-            var output = files != null ? files.Select(d => new FileInfo(d)).ToArray() : null;
+            var output = files != null ? files.Select(d => new UAPFileInfo(d)).ToArray() : null;
             return output;
         }
 
-        public async Task<IFileInfo> PickSaveFileAsync(string defaultExtension, string suggestedName = null)
+        public async Task<IFileInfo?> PickSaveFileAsync(string defaultExtension, string? suggestedName = null)
         {
             var picker = new FileSavePicker();
+            InitializeWithWindow.Initialize(picker, WindowHandle);
+
             if (!string.IsNullOrEmpty(suggestedName) || string.IsNullOrWhiteSpace(suggestedName))
             {
                 picker.SuggestedFileName = suggestedName;
@@ -59,13 +87,15 @@ namespace Plugin.FileSystem
             picker.FileTypeChoices.Add("File", new List<string> { defaultExtension });
 
             var file = await picker.PickSaveFileAsync();
-            return file != null ? new FileInfo(file) : null;
+            return file != null ? new UAPFileInfo(file) : null;
         }
 
 
-        public async Task<IDirectoryInfo> PickDirectoryAsync()
+        public async Task<IDirectoryInfo?> PickDirectoryAsync()
         {
             var picker = new FolderPicker();
+            InitializeWithWindow.Initialize(picker, WindowHandle);
+
             picker.FileTypeFilter.Add(DefaultExtensionFilter);
 
             var folder = await picker.PickSingleFolderAsync();
@@ -76,10 +106,10 @@ namespace Plugin.FileSystem
 
             var folderId = GenerateFutureAccessListId();
             StorageApplicationPermissions.FutureAccessList.AddOrReplace(folderId, folder);
-            return new DirectoryInfo(folder);
+            return new UAPDirectoryInfo(folder);
         }
 
-        public async Task<IFileInfo> GetFileFromPathAsync(string path)
+        public async Task<IFileInfo?> GetFileFromPathAsync(string path)
         {
             if (string.IsNullOrEmpty(path))
             {
@@ -96,10 +126,10 @@ namespace Plugin.FileSystem
                 return null;
             }
 
-            return new FileInfo(storageFile);
+            return new UAPFileInfo(storageFile);
         }
 
-        public async Task<IDirectoryInfo> GetDirectoryFromPathAsync(string path)
+        public async Task<IDirectoryInfo?> GetDirectoryFromPathAsync(string path)
         {
             if (string.IsNullOrEmpty(path))
             {
@@ -116,7 +146,7 @@ namespace Plugin.FileSystem
                 return null;
             }
 
-            return new DirectoryInfo(storageFolder);
+            return new UAPDirectoryInfo(storageFolder);
         }
 
         private static void GenerateExtensionFilterForPicker(IList<string> pickerFilter, IEnumerable<string> inputFilter)
@@ -141,3 +171,5 @@ namespace Plugin.FileSystem
         }
     }
 }
+
+#endif

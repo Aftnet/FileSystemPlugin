@@ -1,10 +1,12 @@
-﻿using Foundation;
+﻿#if IOS
+
+using Foundation;
 using Plugin.FileSystem.Abstractions;
 using System;
 
 namespace Plugin.FileSystem
 {
-    internal class FileSystem : FileSystemBase
+    public class FileSystem : FileSystemBase
     {
         public override IDirectoryInfo LocalStorage => GetSpecialFolder(Environment.SpecialFolder.LocalApplicationData);
 
@@ -20,3 +22,5 @@ namespace Plugin.FileSystem
         }
     }
 }
+
+#endif

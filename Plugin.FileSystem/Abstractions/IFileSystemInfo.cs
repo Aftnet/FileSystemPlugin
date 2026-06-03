@@ -11,7 +11,7 @@ namespace Plugin.FileSystem.Abstractions
 
         Task<DateTimeOffset> GetLastModifiedAsync();
 
-        Task<IDirectoryInfo> GetParentAsync();
+        Task<IDirectoryInfo?> GetParentAsync();
 
         Task RenameAsync(string name);
 

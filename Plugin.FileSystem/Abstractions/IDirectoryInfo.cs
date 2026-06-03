@@ -14,11 +14,11 @@ namespace Plugin.FileSystem.Abstractions
         
         Task<IEnumerable<IDirectoryInfo>> EnumerateDirectoriesAsync();
 
-        Task<IDirectoryInfo> GetDirectoryAsync(string name);
+        Task<IDirectoryInfo?> GetDirectoryAsync(string name);
         
         Task<IEnumerable<IFileInfo>> EnumerateFilesAsync();
 
-        Task<IFileInfo> GetFileAsync(string name);
+        Task<IFileInfo?> GetFileAsync(string name);
 
         Task<IEnumerable<IFileSystemInfo>> EnumerateItemsAsync();
     }

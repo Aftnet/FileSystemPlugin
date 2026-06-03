@@ -19,8 +19,13 @@ namespace Plugin.FileSystem
 
         public Task RenameAsync(string name)
         {
-            var newPath = Path.Combine(NativeItem.Parent.FullName, name);
-            return Task.Run(() => NativeItem.MoveTo(newPath));
+            if (NativeItem.Parent != null)
+            {
+                var newPath = Path.Combine(NativeItem.Parent.FullName, name);
+                return Task.Run(() => NativeItem.MoveTo(newPath));
+            }
+
+            return Task.CompletedTask;
         }
 
         public async Task<IFileInfo> CreateFileAsync(string name)
@@ -58,7 +63,7 @@ namespace Plugin.FileSystem
             return output;
         }
 
-        public async Task<IDirectoryInfo> GetDirectoryAsync(string name)
+        public async Task<IDirectoryInfo?> GetDirectoryAsync(string name)
         {
             var folders = await EnumerateDirectoriesAsync();
             return folders.FirstOrDefault(d => d.Name == name);
@@ -71,7 +76,7 @@ namespace Plugin.FileSystem
             return output;
         }
 
-        public async Task<IFileInfo> GetFileAsync(string name)
+        public async Task<IFileInfo?> GetFileAsync(string name)
         {
             var files = await EnumerateFilesAsync();
             return files.FirstOrDefault(d => d.Name == name);
@@ -91,16 +96,16 @@ namespace Plugin.FileSystem
             return Task.FromResult(modifiedTime);
         }
 
-        public Task<IDirectoryInfo> GetParentAsync()
+        public Task<IDirectoryInfo?> GetParentAsync()
         {
-            var output = new DirectoryInfo(NativeItem.Parent);
+            var output = NativeItem.Parent != null ? new DirectoryInfo(NativeItem.Parent) : null;
             return Task.FromResult(output as IDirectoryInfo);
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             var other = obj as DirectoryInfo;
-            if (obj == null)
+            if (other == null)
                 return false;
 
             return FullName == other.FullName;
