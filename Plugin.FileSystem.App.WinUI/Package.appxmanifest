@@ -34,7 +34,9 @@
   <Applications>
     <Application Id="App"
       Executable="$targetnametoken$.exe"
-      EntryPoint="Windows.PartialTrustApplication">
+      EntryPoint="Windows.PartialTrustApplication"
+      uap10:RuntimeBehavior="packagedClassicApp"
+      uap10:TrustLevel="appContainer">
       <uap:VisualElements
         DisplayName="Plugin.FileSystem.App.WinUI"
         Description="Plugin.FileSystem.App.WinUI"
