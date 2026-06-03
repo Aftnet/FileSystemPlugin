@@ -10,7 +10,7 @@
 		<RepositoryUrl>https://github.com/Aftnet/FileSystemPlugin</RepositoryUrl>
 		<PackageIconUrl>https://github.com/Aftnet/FileSystemPlugin/raw/master/Icon.png</PackageIconUrl>
 		<PackageProjectUrl>https://github.com/aftnet/FileSystemPlugin</PackageProjectUrl>
-		<PackageLicense>https://github.com/aftnet/FileSystemPlugin/blob/master/License.txt</PackageLicense>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Owners>Alberto Fustinoni</Owners>
 		<Title>File system plugin for Xamarin and Windows</Title>
 		<Summary>File System API abstraction</Summary>
