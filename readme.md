@@ -1,7 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/6wab6l0x8rctc5w2?svg=true)](https://ci.appveyor.com/project/Aftnet/filesystemplugin)
-[![NuGet version](https://img.shields.io/nuget/v/Xam.Plugin.FileSystem.svg)](https://www.nuget.org/packages/Xam.Plugin.FileSystem/)
-
-# File System Xamarin Plugin
+# File System Plugin
 
 Provides a unified API to interface with a platform's native file system
 The API is modeled on System.IO and uses it where it makes sense to do so, with the addition of making IO operations asynchronous.
@@ -15,11 +12,7 @@ The API is modeled on System.IO and uses it where it makes sense to do so, with 
 
 ## Supported platforms
 
-- UWP
-- .Net 4.6.1+
-- iOS
-- macOS
-- Android
+.NET10 on Windows/Android/macOS/iOS
 
 ## Examples
 

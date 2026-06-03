@@ -7,10 +7,10 @@
 		<Nullable>enable</Nullable>
 		<Authors>Alberto Fustinoni</Authors>
 		<PackageId>Xam.Plugin.FileSystem</PackageId>
-		<RepositoryUrl>https://github.com/Aftnet/FileSystemPlugin</RepositoryUrl>
 		<PackageIconUrl>https://github.com/Aftnet/FileSystemPlugin/raw/master/Icon.png</PackageIconUrl>
-		<PackageProjectUrl>https://github.com/aftnet/FileSystemPlugin</PackageProjectUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/aftnet/FileSystemPlugin</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Aftnet/FileSystemPlugin</RepositoryUrl>
 		<Owners>Alberto Fustinoni</Owners>
 		<Title>File system plugin for Xamarin and Windows</Title>
 		<Summary>File System API abstraction</Summary>
@@ -19,6 +19,7 @@
 		<Copyright>Copyright 2018</Copyright>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<PackageIcon>Icon.png</PackageIcon>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="$(TargetFramework.Contains('net10.0-windows10'))">
@@ -36,6 +37,10 @@
 	
 	<ItemGroup>
 	  <None Include="..\Icon.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Include="..\readme.md">
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>
 	  </None>
