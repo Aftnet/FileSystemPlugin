@@ -1,11 +1,6 @@
 ﻿#if WINDOWS10_0_17763_0_OR_GREATER
 
 using Plugin.FileSystem.Abstractions;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
@@ -21,7 +16,7 @@ namespace Plugin.FileSystem
     /// </summary>
     public class FileSystem : IFileSystem
     {
-        private readonly nint WindowHandle;
+        private readonly nint? WindowHandle;
 
         private const uint FutureAccessListMaxEntries = 10;
         private uint FutureAccessListCounter = 0;
@@ -36,15 +31,22 @@ namespace Plugin.FileSystem
 
         public IDirectoryInfo InstallLocation => new UAPDirectoryInfo(Package.Current.InstalledLocation);
 
-        public FileSystem(object appWindow)
+        public FileSystem()
         {
-            WindowHandle = WindowNative.GetWindowHandle(appWindow);
+        }
+
+        public FileSystem(nint windowHandle)
+        {
+            WindowHandle = windowHandle;
         }
 
         public async Task<IFileInfo?> PickFileAsync(IEnumerable<string>? extensionsFilter = null)
         {
             var picker = new FileOpenPicker();
-            InitializeWithWindow.Initialize(picker, WindowHandle);
+            if (WindowHandle is nint handle)
+            {
+                InitializeWithWindow.Initialize(picker, handle);
+            }
 
             if (extensionsFilter == null)
             {
@@ -60,7 +62,10 @@ namespace Plugin.FileSystem
         public async Task<IFileInfo[]?> PickFilesAsync(IEnumerable<string>? extensionsFilter = null)
         {
             var picker = new FileOpenPicker();
-            InitializeWithWindow.Initialize(picker, WindowHandle);
+            if (WindowHandle is nint handle)
+            {
+                InitializeWithWindow.Initialize(picker, handle);
+            }
 
             if (extensionsFilter == null)
             {
@@ -77,7 +82,10 @@ namespace Plugin.FileSystem
         public async Task<IFileInfo?> PickSaveFileAsync(string defaultExtension, string? suggestedName = null)
         {
             var picker = new FileSavePicker();
-            InitializeWithWindow.Initialize(picker, WindowHandle);
+            if (WindowHandle is nint handle)
+            {
+                InitializeWithWindow.Initialize(picker, handle);
+            }
 
             if (!string.IsNullOrEmpty(suggestedName) || string.IsNullOrWhiteSpace(suggestedName))
             {
@@ -94,7 +102,10 @@ namespace Plugin.FileSystem
         public async Task<IDirectoryInfo?> PickDirectoryAsync()
         {
             var picker = new FolderPicker();
-            InitializeWithWindow.Initialize(picker, WindowHandle);
+            if (WindowHandle is nint handle)
+            {
+                InitializeWithWindow.Initialize(picker, handle);
+            }
 
             picker.FileTypeFilter.Add(DefaultExtensionFilter);
 

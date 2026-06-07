@@ -13,6 +13,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using WinRT.Interop;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -29,7 +30,7 @@ namespace Plugin.FileSystem.App.WinUI
         public MainWindow()
         {
             InitializeComponent();
-            fs = new FileSystem(this);
+            fs = new FileSystem(WindowNative.GetWindowHandle(this));
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)

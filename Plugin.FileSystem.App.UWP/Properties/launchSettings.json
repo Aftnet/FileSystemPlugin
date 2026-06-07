@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "Plugin.FileSystem.App.UWP": {
+      "commandName": "MsixPackage"
+    }
+  }
+}

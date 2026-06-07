@@ -1,0 +1,7 @@
+﻿<Application
+    x:Class="Plugin.FileSystem.App.UWP.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Plugin.FileSystem.App.UWP">
+
+</Application>
